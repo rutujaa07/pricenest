@@ -482,6 +482,54 @@
       }
 
       /* ══════════════════════════════════
+   FILTER BAR
+══════════════════════════════════ */
+      .filter-bar {
+        padding: 24px 40px 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .filter-label {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--mute);
+        margin-right: 4px;
+      }
+      .fpill {
+        padding: 8px 20px;
+        border-radius: var(--r100);
+        border: 1.5px solid var(--border);
+        background: #fff;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--ink2);
+        cursor: pointer;
+        transition: all 0.2s;
+        font-family: "Outfit", sans-serif;
+        white-space: nowrap;
+      }
+      .fpill:hover {
+        border-color: var(--ink);
+        color: var(--ink);
+      }
+      .fpill.active {
+        background: var(--ink);
+        border-color: var(--ink);
+        color: #fff;
+        font-weight: 600;
+      }
+      @media (max-width: 750px) {
+        .filter-bar {
+          padding: 20px 16px 0;
+          gap: 8px;
+        }
+      }
+
+      /* ══════════════════════════════════
    SHOP BODY
 ══════════════════════════════════ */
       #shopBody {
@@ -1263,6 +1311,29 @@
 
     <!-- ══════════════ SHOP BODY ══════════════ -->
     <div id="shopBody">
+      <div class="filter-bar" id="filterBar">
+        <span class="filter-label">Filter</span>
+        <button class="fpill active" onclick="filterCat('all',this)">
+          All
+        </button>
+        <button class="fpill" onclick="filterCat('home',this)">🏠 Home</button>
+        <button class="fpill" onclick="filterCat('tech',this)">💻 Tech</button>
+        <button class="fpill" onclick="filterCat('beauty',this)">
+          ✨ Beauty
+        </button>
+        <button class="fpill" onclick="filterCat('kitchen',this)">
+          🍳 Kitchen
+        </button>
+        <button class="fpill" onclick="filterCat('fitness',this)">
+          💪 Fitness
+        </button>
+        <button class="fpill" onclick="filterCat('fashion',this)">
+          👗 Fashion
+        </button>
+        <button class="fpill" onclick="filterCat('other',this)">
+          🌟 Other
+        </button>
+      </div>
       <div class="section-bar">
         <h2>All Picks</h2>
         <span id="countLabel">0 products</span>
@@ -1590,6 +1661,7 @@
    STATE
 ═══════════════════════════════════════════ */
       let products = [];
+      let currentCat = "all";
       let delId = null;
       let editId = null;
       let badge = "none",
@@ -1702,13 +1774,26 @@
   </div>`;
       }
 
+      function filterCat(cat, el) {
+        currentCat = cat;
+        document
+          .querySelectorAll(".fpill")
+          .forEach((p) => p.classList.remove("active"));
+        el.classList.add("active");
+        render();
+      }
+
       function render() {
         const s = q("searchInput").value.toLowerCase();
-        const filtered = products.filter(
-          (p) =>
+        const filtered = products.filter((p) => {
+          const catOk =
+            currentCat === "all" ||
+            (p.category || "").toLowerCase() === currentCat;
+          const searchOk =
             p.name.toLowerCase().includes(s) ||
-            (p.category || "").toLowerCase().includes(s)
-        );
+            (p.category || "").toLowerCase().includes(s);
+          return catOk && searchOk;
+        });
         const grid = q("grid");
         if (filtered.length === 0) {
           grid.innerHTML = `<div class="empty">
@@ -1719,7 +1804,7 @@
       <p>${
         isAdmin
           ? 'Click "+ Add Product" in the nav to get started.'
-          : "Try a different search."
+          : "Try a different search or filter."
       }</p>
     </div>`;
         } else {
