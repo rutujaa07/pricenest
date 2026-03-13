@@ -13,7 +13,6 @@
       rel="stylesheet"
     />
     <style>
-      /* ─── TOKENS ─── */
       :root {
         --ink: #0e0c0a;
         --ink2: #3a322c;
@@ -51,8 +50,6 @@
       img {
         display: block;
       }
-
-      /* ─── SCROLLBAR ─── */
       ::-webkit-scrollbar {
         width: 6px;
       }
@@ -64,9 +61,7 @@
         border-radius: 3px;
       }
 
-      /* ══════════════════════════════════
-   LOADING
-══════════════════════════════════ */
+      /* LOADING */
       #loadingScreen {
         position: fixed;
         inset: 0;
@@ -77,11 +72,6 @@
         align-items: center;
         justify-content: center;
         gap: 18px;
-        transition: opacity 0.4s;
-      }
-      #loadingScreen.hidden {
-        opacity: 0;
-        pointer-events: none;
       }
       .spin {
         width: 44px;
@@ -102,9 +92,7 @@
         color: var(--ink2);
       }
 
-      /* ══════════════════════════════════
-   NAV
-══════════════════════════════════ */
+      /* NAV */
       #mainNav {
         display: none;
         background: #fff;
@@ -163,7 +151,6 @@
         align-items: center;
         gap: 10px;
       }
-      /* admin-only buttons — hidden by default */
       .admin-only {
         display: none;
       }
@@ -205,9 +192,7 @@
         box-shadow: 0 6px 18px rgba(230, 0, 35, 0.35);
       }
 
-      /* ══════════════════════════════════
-   HERO
-══════════════════════════════════ */
+      /* HERO */
       #heroSection {
         display: none;
       }
@@ -220,7 +205,6 @@
         display: flex;
         align-items: stretch;
       }
-      /* left text panel */
       .hero-left {
         flex: 1;
         min-width: 0;
@@ -231,7 +215,6 @@
         position: relative;
         z-index: 2;
       }
-      /* right image collage */
       .hero-right {
         width: 44%;
         min-width: 320px;
@@ -267,14 +250,6 @@
       }
       .hero-collage img:hover {
         filter: brightness(0.85) saturate(1.1);
-      }
-
-      /* decorative line */
-      .hero-line {
-        width: 48px;
-        height: 2px;
-        background: var(--gold);
-        margin-bottom: 28px;
       }
       .hero-eyebrow {
         font-size: 10px;
@@ -366,15 +341,12 @@
         color: #fff;
         border-color: rgba(255, 255, 255, 0.4);
       }
-      /* stats row */
       .hero-stats {
         display: flex;
         gap: 36px;
         margin-top: 52px;
         padding-top: 36px;
         border-top: 1px solid rgba(255, 255, 255, 0.08);
-      }
-      .stat-item {
       }
       .stat-num {
         font-family: "Cormorant Garamond", serif;
@@ -394,7 +366,6 @@
         letter-spacing: 1.5px;
         text-transform: uppercase;
       }
-      /* floating badge */
       .hero-badge {
         position: absolute;
         bottom: 48px;
@@ -434,8 +405,6 @@
         font-size: 11px;
         color: rgba(255, 255, 255, 0.4);
       }
-
-      /* noise grain overlay */
       .hero::before {
         content: "";
         position: absolute;
@@ -481,12 +450,11 @@
         }
       }
 
-      /* ══════════════════════════════════
-   FILTER BAR
-══════════════════════════════════ */
+      /* ══ FILTER BAR ══
+   NOTE: filters-wrap is OUTSIDE #shopBody so it's always visible */
       .filters-wrap {
         padding: 28px 40px 0;
-        display: flex;
+        display: none; /* shown by showUI() */
         flex-direction: column;
         gap: 12px;
       }
@@ -503,7 +471,7 @@
         text-transform: uppercase;
         color: var(--mute);
         margin-right: 2px;
-        min-width: 52px;
+        min-width: 60px;
       }
       .fpill {
         padding: 7px 18px;
@@ -528,7 +496,6 @@
         color: #fff;
         font-weight: 600;
       }
-      /* price pills get a green tint when active */
       .fpill.price-pill.active {
         background: #1a6e45;
         border-color: #1a6e45;
@@ -538,11 +505,8 @@
         border-color: #1a6e45;
         color: #1a6e45;
       }
-      .filter-divider {
-        width: 100%;
-        height: 1px;
-        background: var(--border);
-        margin: 2px 0;
+      .fpill.price-pill.active:hover {
+        color: #fff;
       }
       @media (max-width: 750px) {
         .filters-wrap {
@@ -550,18 +514,16 @@
           gap: 10px;
         }
         .filter-label {
-          min-width: 40px;
+          min-width: 46px;
         }
       }
 
-      /* ══════════════════════════════════
-   SHOP BODY
-══════════════════════════════════ */
+      /* SHOP BODY */
       #shopBody {
         display: none;
       }
       .section-bar {
-        padding: 36px 40px 12px;
+        padding: 28px 40px 12px;
         display: flex;
         align-items: baseline;
         justify-content: space-between;
@@ -577,7 +539,7 @@
         color: var(--mute);
       }
 
-      /* ─── MASONRY ─── */
+      /* MASONRY */
       .masonry {
         columns: 5;
         column-gap: 18px;
@@ -604,11 +566,8 @@
         #mainNav .nav-search {
           margin: 0 12px;
         }
-        .hero {
-          padding: 64px 20px 56px;
-        }
         .section-bar {
-          padding: 24px 16px 8px;
+          padding: 20px 16px 8px;
         }
       }
       @media (max-width: 420px) {
@@ -621,7 +580,7 @@
         }
       }
 
-      /* ─── CARD ─── */
+      /* CARD */
       .card {
         break-inside: avoid;
         margin-bottom: 18px;
@@ -660,8 +619,6 @@
       .card:hover .btn-del-card {
         opacity: 1;
       }
-
-      /* image */
       .card-img {
         position: relative;
         overflow: hidden;
@@ -676,8 +633,6 @@
       .card:hover .card-img img {
         transform: scale(1.06);
       }
-
-      /* overlay */
       .card-overlay {
         position: absolute;
         inset: 0;
@@ -716,8 +671,6 @@
         background: #b03020;
         color: #fff;
       }
-
-      /* corner buttons */
       .btn-pin-card {
         position: absolute;
         top: 11px;
@@ -740,7 +693,6 @@
       .btn-pin-card:hover {
         transform: scale(1.12);
       }
-      /* admin delete — hidden for public */
       .btn-del-card {
         position: absolute;
         top: 11px;
@@ -755,18 +707,15 @@
         cursor: pointer;
         opacity: 0;
         transition: opacity 0.25s, transform 0.2s, background 0.2s;
-        display: flex;
+        display: none;
         align-items: center;
         justify-content: center;
         z-index: 4;
-        display: none; /* hidden until admin */
       }
       .btn-del-card:hover {
         background: var(--red);
         transform: scale(1.12);
       }
-
-      /* badge */
       .badge {
         position: absolute;
         top: 11px;
@@ -787,8 +736,6 @@
         background: #2d9c6a;
         color: #fff;
       }
-
-      /* body */
       .card-body {
         padding: 14px 16px 16px;
       }
@@ -875,8 +822,6 @@
         color: #fff;
         border-color: var(--pin);
       }
-
-      /* empty */
       .empty {
         column-span: all;
         text-align: center;
@@ -899,9 +844,7 @@
         font-size: 14px;
       }
 
-      /* ══════════════════════════════════
-   ADMIN LOGIN MODAL
-══════════════════════════════════ */
+      /* MODALS */
       .modal-bg {
         position: fixed;
         inset: 0;
@@ -1020,10 +963,6 @@
         margin-bottom: 14px;
         display: none;
       }
-
-      /* ══════════════════════════════════
-   ADD PRODUCT MODAL
-══════════════════════════════════ */
       #addModal .modal {
         max-width: 640px;
         max-height: 92vh;
@@ -1116,17 +1055,11 @@
         transform: scale(1.2);
         color: var(--gold);
       }
-
-      /* ══════════════════════════════════
-   CONFIRM DELETE
-══════════════════════════════════ */
       #confirmModal .modal {
         max-width: 360px;
       }
 
-      /* ══════════════════════════════════
-   TOAST
-══════════════════════════════════ */
+      /* TOAST */
       .toast {
         position: fixed;
         bottom: 28px;
@@ -1155,9 +1088,6 @@
         background: var(--red);
       }
 
-      /* ══════════════════════════════════
-   FOOTER
-══════════════════════════════════ */
       footer {
         background: var(--ink);
         color: rgba(255, 255, 255, 0.35);
@@ -1205,20 +1135,17 @@
         .modal-head {
           padding: 20px;
         }
-        .setup-inner {
-          padding: 36px 24px;
-        }
       }
     </style>
   </head>
   <body>
-    <!-- ══════════════ LOADING ══════════════ -->
+    <!-- LOADING -->
     <div id="loadingScreen">
       <div class="spin"></div>
       <p>Loading PriceNest…</p>
     </div>
 
-    <!-- ══════════════ NAV ══════════════ -->
+    <!-- NAV -->
     <nav id="mainNav">
       <div class="nav-logo">Price<em>Nest</em></div>
       <div class="nav-search">
@@ -1231,14 +1158,12 @@
         />
       </div>
       <div class="nav-right">
-        <!-- visible to everyone -->
         <button
           class="btn-nav btn-pin-nav"
           onclick="window.open('https://www.pinterest.com/krishnamate909/?invite_code=9f61e1a536c646f6990be5255a7728e4&sender=894668419633573980','_blank')"
         >
           <i class="fab fa-pinterest"></i><span> Pinterest</span>
         </button>
-        <!-- admin only -->
         <button class="btn-nav btn-add-nav admin-only" onclick="openAddModal()">
           <i class="fas fa-plus"></i><span> Add Product</span>
         </button>
@@ -1249,7 +1174,6 @@
         >
           <i class="fas fa-sign-out-alt"></i>
         </button>
-        <!-- login (shown when not admin) -->
         <button
           class="btn-nav btn-logout-nav"
           id="btnAdminLogin"
@@ -1262,15 +1186,13 @@
       </div>
     </nav>
 
-    <!-- ══════════════ HERO ══════════════ -->
+    <!-- HERO -->
     <section id="heroSection">
       <div class="hero">
-        <!-- left panel -->
         <div class="hero-left">
           <div class="hero-eyebrow">PriceNest · Where Best Prices Gather</div>
           <h1>
-            Every Find,<br />
-            <em>Worth It.</em>
+            Every Find,<br /><em>Worth It.</em>
             <span class="line2">Hand-picked products. Real savings.</span>
           </h1>
           <p class="hero-desc">
@@ -1279,7 +1201,7 @@
             your best price.
           </p>
           <div class="hero-actions">
-            <a href="#shopBody" class="hero-cta">
+            <a href="#filtersSection" class="hero-cta">
               <i class="fas fa-shopping-bag"></i> Explore the Collection
             </a>
             <a
@@ -1305,7 +1227,6 @@
             </div>
           </div>
         </div>
-        <!-- right collage -->
         <div class="hero-right">
           <div class="hero-collage">
             <img
@@ -1330,76 +1251,80 @@
             />
           </div>
         </div>
-        <!-- floating pill -->
+        <div class="hero-badge">
+          <div class="hero-badge-icon"><i class="fab fa-pinterest-p"></i></div>
+          <div class="hero-badge-text">
+            <strong>Save to Pinterest</strong>
+            <span>Every product is pinnable</span>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- ══════════════ SHOP BODY ══════════════ -->
-    <div id="shopBody">
-      <div class="filters-wrap" id="filtersWrap">
-        <!-- Row 1: Category -->
-        <div class="filter-row">
-          <span class="filter-label">Category</span>
-          <button class="fpill active" onclick="filterCat('all',this)">
-            All
-          </button>
-          <button class="fpill" onclick="filterCat('home',this)">
-            🏠 Home
-          </button>
-          <button class="fpill" onclick="filterCat('tech',this)">
-            💻 Tech
-          </button>
-          <button class="fpill" onclick="filterCat('beauty',this)">
-            ✨ Beauty
-          </button>
-          <button class="fpill" onclick="filterCat('kitchen',this)">
-            🍳 Kitchen
-          </button>
-          <button class="fpill" onclick="filterCat('fitness',this)">
-            💪 Fitness
-          </button>
-          <button class="fpill" onclick="filterCat('fashion',this)">
-            👗 Fashion
-          </button>
-          <button class="fpill" onclick="filterCat('other',this)">
-            🌟 Other
-          </button>
-        </div>
-        <!-- Row 2: Price -->
-        <div class="filter-row">
-          <span class="filter-label">Price</span>
-          <button
-            class="fpill price-pill active"
-            onclick="filterPrice('all',this)"
-          >
-            Any Price
-          </button>
-          <button class="fpill price-pill" onclick="filterPrice(199,this)">
-            Under ₹199
-          </button>
-          <button class="fpill price-pill" onclick="filterPrice(299,this)">
-            Under ₹399
-          </button>
-          <button class="fpill price-pill" onclick="filterPrice(399,this)">
-            Under ₹599
-          </button>
-          <button class="fpill price-pill" onclick="filterPrice(499,this)">
-            Under ₹799
-          </button>
-          <button class="fpill price-pill" onclick="filterPrice(999,this)">
-            Under ₹999
-          </button>
-          <button class="fpill price-pill" onclick="filterPrice(1499,this)">
-            Under ₹1,499
-          </button>
-          <button class="fpill price-pill" onclick="filterPrice(1999,this)">
-            Under ₹1,999
-          </button>
-          <button class="fpill price-pill" onclick="filterPrice(4999,this)">
-            Under ₹4,999
-          </button>
-        </div>
+    <!-- ══ FILTERS (outside #shopBody so they show independently) ══ -->
+    <div class="filters-wrap" id="filtersSection">
+      <!-- Row 1: Category -->
+      <div class="filter-row">
+        <span class="filter-label">Category</span>
+        <button class="fpill active" onclick="filterCat('all',this)">
+          All
+        </button>
+        <button class="fpill" onclick="filterCat('home',this)">🏠 Home</button>
+        <button class="fpill" onclick="filterCat('tech',this)">💻 Tech</button>
+        <button class="fpill" onclick="filterCat('beauty',this)">
+          ✨ Beauty
+        </button>
+        <button class="fpill" onclick="filterCat('kitchen',this)">
+          🍳 Kitchen
+        </button>
+        <button class="fpill" onclick="filterCat('fitness',this)">
+          💪 Fitness
+        </button>
+        <button class="fpill" onclick="filterCat('fashion',this)">
+          👗 Fashion
+        </button>
+        <button class="fpill" onclick="filterCat('other',this)">
+          🌟 Other
+        </button>
       </div>
+      <!-- Row 2: Price — values MATCH the label text -->
+      <div class="filter-row">
+        <span class="filter-label">Price</span>
+        <button
+          class="fpill price-pill active"
+          onclick="filterPrice('all',this)"
+        >
+          Any Price
+        </button>
+        <button class="fpill price-pill" onclick="filterPrice(199,this)">
+          Under ₹199
+        </button>
+        <button class="fpill price-pill" onclick="filterPrice(399,this)">
+          Under ₹399
+        </button>
+        <button class="fpill price-pill" onclick="filterPrice(599,this)">
+          Under ₹599
+        </button>
+        <button class="fpill price-pill" onclick="filterPrice(799,this)">
+          Under ₹799
+        </button>
+        <button class="fpill price-pill" onclick="filterPrice(999,this)">
+          Under ₹999
+        </button>
+        <button class="fpill price-pill" onclick="filterPrice(1499,this)">
+          Under ₹1,499
+        </button>
+        <button class="fpill price-pill" onclick="filterPrice(1999,this)">
+          Under ₹1,999
+        </button>
+        <button class="fpill price-pill" onclick="filterPrice(4999,this)">
+          Under ₹4,999
+        </button>
+      </div>
+    </div>
+
+    <!-- SHOP BODY -->
+    <div id="shopBody">
       <div class="section-bar">
         <h2>All Picks</h2>
         <span id="countLabel">0 products</span>
@@ -1421,7 +1346,7 @@
       <i class="fas fa-arrow-up"></i>
     </button>
 
-    <!-- ══════════════ ADMIN LOGIN MODAL ══════════════ -->
+    <!-- ADMIN LOGIN MODAL -->
     <div class="modal-bg" id="loginModal" onclick="closeBg('loginModal',event)">
       <div class="modal">
         <div class="modal-head">
@@ -1445,7 +1370,7 @@
       </div>
     </div>
 
-    <!-- ══════════════ ADD PRODUCT MODAL ══════════════ -->
+    <!-- ADD PRODUCT MODAL -->
     <div class="modal-bg" id="addModal" onclick="closeBg('addModal',event)">
       <div
         class="modal"
@@ -1467,7 +1392,6 @@
               placeholder="e.g. Ceramic Table Lamp"
             />
           </div>
-
           <div class="form-row">
             <div class="fgrp">
               <label>Category *</label>
@@ -1493,11 +1417,10 @@
               </div>
             </div>
           </div>
-
           <div class="form-row">
             <div class="fgrp">
               <label>Price *</label>
-              <input class="finput" id="f_price" placeholder="$49.99" />
+              <input class="finput" id="f_price" placeholder="₹499" />
             </div>
             <div class="fgrp">
               <label
@@ -1512,10 +1435,9 @@
                   >(optional)</span
                 ></label
               >
-              <input class="finput" id="f_oldprice" placeholder="$79.99" />
+              <input class="finput" id="f_oldprice" placeholder="₹799" />
             </div>
           </div>
-
           <div class="form-row">
             <div class="fgrp">
               <label>Stars</label>
@@ -1532,7 +1454,6 @@
               <input class="finput" id="f_reviews" placeholder="2.4k" />
             </div>
           </div>
-
           <div class="fgrp">
             <label>Product Image URL *</label>
             <input
@@ -1548,7 +1469,6 @@
               Use any direct image URL — Unsplash, Amazon product image, etc.
             </p>
           </div>
-
           <div class="fgrp">
             <label>Amazon Affiliate Link *</label>
             <input
@@ -1560,7 +1480,6 @@
               Include your affiliate tag so you earn commission.
             </p>
           </div>
-
           <div class="fgrp">
             <label
               >Pinterest URL
@@ -1571,12 +1490,15 @@
                   letter-spacing: 0;
                   color: var(--mute);
                 "
-                >(optional — auto-built if empty)</span
+                >(optional)</span
               ></label
             >
-            <input class="finput" id="f_pin" placeholder="Auto-generated" />
+            <input
+              class="finput"
+              id="f_pin"
+              placeholder="Auto-generated if empty"
+            />
           </div>
-
           <button
             class="btn-primary"
             id="addBtn"
@@ -1589,7 +1511,7 @@
       </div>
     </div>
 
-    <!-- ══════════════ CONFIRM DELETE MODAL ══════════════ -->
+    <!-- CONFIRM DELETE -->
     <div class="modal-bg" id="confirmModal">
       <div class="modal" style="max-width: 360px">
         <div class="modal-head">
@@ -1648,20 +1570,17 @@
       </div>
     </div>
 
-    <!-- TOAST -->
     <div class="toast" id="toast"></div>
 
     <script>
-      /* ═══════════════════════════════════════════
-   CONFIG & AUTH — hardcoded
-═══════════════════════════════════════════ */
+      /* CONFIG */
       const BIN_ID = "69b42893c3097a1dd5215474";
       const API_KEY =
         "$2a$10$ur8GeZSwi8QyAxW6vpKFOOCK6rz77CCZSpoJg/4SukR7rciQeqg7m";
       const ADMIN_PASS = "Kh@z4n@#9xR!mZ";
       let isAdmin = false;
 
-      /* ── ADMIN AUTH ── */
+      /* AUTH */
       function openLoginModal() {
         openModal("loginModal");
         q("loginPass").value = "";
@@ -1699,11 +1618,8 @@
         render();
       }
 
-      /* ═══════════════════════════════════════════
-   JSONBIN API
-═══════════════════════════════════════════ */
+      /* JSONBIN */
       const JB = "https://api.jsonbin.io/v3/b";
-
       async function fetchProds() {
         const r = await fetch(`${JB}/${BIN_ID}/latest`, {
           headers: { "X-Master-Key": API_KEY },
@@ -1723,24 +1639,19 @@
         if (!r.ok) throw new Error(r.status);
       }
 
-      /* ═══════════════════════════════════════════
-   STATE
-═══════════════════════════════════════════ */
+      /* STATE */
       let products = [];
       let currentCat = "all";
       let currentPrice = "all";
-      let delId = null;
-      let editId = null;
-      let badge = "none",
+      let delId = null,
+        editId = null,
+        badge = "none",
         stars = 5;
-
       const uid = () =>
         "v_" + Math.random().toString(36).substr(2, 8) + "_" + Date.now();
       const q = (id) => document.getElementById(id);
 
-      /* ═══════════════════════════════════════════
-   BOOT
-═══════════════════════════════════════════ */
+      /* BOOT */
       async function initShop() {
         q("loadingScreen").style.display = "flex";
         try {
@@ -1757,14 +1668,13 @@
         q("loadingScreen").style.display = "none";
         q("mainNav").style.display = "flex";
         q("heroSection").style.display = "block";
+        q("filtersSection").style.display = "flex"; /* ← show filters */
         q("shopBody").style.display = "block";
         const hc = q("heroCount");
         if (hc) hc.textContent = products.length;
       }
 
-      /* ═══════════════════════════════════════════
-   RENDER
-═══════════════════════════════════════════ */
+      /* RENDER */
       function starsH(n) {
         return [1, 2, 3, 4, 5].map((i) => (i <= n ? "★" : "☆")).join("");
       }
@@ -1801,8 +1711,9 @@
         return `
   <div class="card" style="animation-delay:${delay}s">
     <div class="card-img">
-      <img src="${p.img}" alt="${p.name}" loading="lazy"
-           onerror="this.src='https://images.unsplash.com/photo-1525328437458-0c4d4db7cab4?w=400&q=80'"/>
+      <img src="${p.img}" alt="${
+          p.name
+        }" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1525328437458-0c4d4db7cab4?w=400&q=80'"/>
       <div class="card-overlay">
         <a class="cta-shop" href="${
           p.amazonUrl
@@ -1811,9 +1722,7 @@
         </a>
       </div>
       ${bdg}
-      <button class="btn-pin-card" onclick="pinIt(event,'${pin}')" title="Save to Pinterest">
-        <i class="fab fa-pinterest-p"></i>
-      </button>
+      <button class="btn-pin-card" onclick="pinIt(event,'${pin}')" title="Save to Pinterest"><i class="fab fa-pinterest-p"></i></button>
       ${delBtn}
     </div>
     <div class="card-body">
@@ -1830,12 +1739,8 @@
       <div class="card-links">
         <a class="lnk lnk-amz" href="${
           p.amazonUrl
-        }" target="_blank" rel="noopener noreferrer">
-          <i class="fab fa-amazon"></i> Amazon
-        </a>
-        <a class="lnk lnk-pin" href="${pin}" target="_blank" rel="noopener noreferrer">
-          <i class="fab fa-pinterest-p"></i> Save
-        </a>
+        }" target="_blank" rel="noopener noreferrer"><i class="fab fa-amazon"></i> Amazon</a>
+        <a class="lnk lnk-pin" href="${pin}" target="_blank" rel="noopener noreferrer"><i class="fab fa-pinterest-p"></i> Save</a>
       </div>
     </div>
   </div>`;
@@ -1849,7 +1754,6 @@
         el.classList.add("active");
         render();
       }
-
       function filterPrice(max, el) {
         currentPrice = max;
         document
@@ -1858,7 +1762,6 @@
         el.classList.add("active");
         render();
       }
-
       function render() {
         const s = q("searchInput").value.toLowerCase();
         const filtered = products.filter((p) => {
@@ -1877,17 +1780,15 @@
         });
         const grid = q("grid");
         if (filtered.length === 0) {
-          grid.innerHTML = `<div class="empty">
-      <i class="fas fa-box-open"></i>
-      <h3>${
-        isAdmin ? "No products yet — add your first one!" : "No products found"
-      }</h3>
-      <p>${
-        isAdmin
-          ? 'Click "+ Add Product" in the nav to get started.'
-          : "Try a different search or filter."
-      }</p>
-    </div>`;
+          grid.innerHTML = `<div class="empty"><i class="fas fa-box-open"></i><h3>${
+            isAdmin
+              ? "No products yet — add your first one!"
+              : "No products found"
+          }</h3><p>${
+            isAdmin
+              ? 'Click "+ Add Product" in the nav to get started.'
+              : "Try a different search or filter."
+          }</p></div>`;
         } else {
           grid.innerHTML = filtered
             .map((p, i) => cardHtml(p, i * 0.04))
@@ -1897,16 +1798,13 @@
           filtered.length !== 1 ? "s" : ""
         }`;
       }
-
       function pinIt(e, url) {
         e.preventDefault();
         e.stopPropagation();
         window.open(decodeURIComponent(url), "_blank");
       }
 
-      /* ═══════════════════════════════════════════
-   ADD / EDIT PRODUCT
-═══════════════════════════════════════════ */
+      /* ADD/EDIT */
       function openAddModal(id) {
         editId = id || null;
         q("addModalTitle").textContent = editId
@@ -1947,7 +1845,6 @@
         updateStarUI();
         openModal("addModal");
       }
-
       function setBadge(v) {
         badge = v;
         updateBadgeUI();
@@ -1976,7 +1873,6 @@
           ? `<img src="${url}" onerror="this.parentElement.innerHTML='<i class=\\'fas fa-exclamation-triangle\\'></i><span>Cannot load</span>'"/>`
           : `<i class="fas fa-image"></i><span>Image preview</span>`;
       }
-
       async function submitProduct() {
         const name = q("f_name").value.trim(),
           cat = q("f_cat").value,
@@ -2006,7 +1902,6 @@
           toast("Enter your Amazon affiliate link", "err");
           return;
         }
-
         q("addBtn").disabled = true;
         q("addBtnTxt").textContent = "Saving…";
         try {
@@ -2026,7 +1921,7 @@
                 badge,
                 stars,
               };
-          } else {
+          } else
             products.unshift({
               id: uid(),
               name,
@@ -2040,7 +1935,6 @@
               badge,
               stars,
             });
-          }
           await pushProds(products);
           render();
           closeModal("addModal");
@@ -2052,9 +1946,7 @@
         q("addBtnTxt").textContent = editId ? "Save Changes" : "✦ Save Product";
       }
 
-      /* ═══════════════════════════════════════════
-   DELETE
-═══════════════════════════════════════════ */
+      /* DELETE */
       function askDel(e, id) {
         e.preventDefault();
         e.stopPropagation();
@@ -2075,9 +1967,7 @@
         delId = null;
       }
 
-      /* ═══════════════════════════════════════════
-   MODAL HELPERS
-═══════════════════════════════════════════ */
+      /* MODAL HELPERS */
       function openModal(id) {
         q(id).classList.add("open");
         document.body.style.overflow = "hidden";
@@ -2089,8 +1979,6 @@
       function closeBg(id, e) {
         if (e.target.id === id) closeModal(id);
       }
-
-      /* TOAST */
       function toast(msg, type = "") {
         const t = q("toast");
         t.textContent = msg;
@@ -2099,9 +1987,6 @@
         t._t = setTimeout(() => t.classList.remove("show"), 3200);
       }
 
-      /* ═══════════════════════════════════════════
-   BOOT
-═══════════════════════════════════════════ */
       initShop();
     </script>
   </body>
