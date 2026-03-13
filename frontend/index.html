@@ -3,13 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PinShop — Curated Finds</title>
+    <title>Velvra — Curated Picks</title>
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
     <link
@@ -17,181 +13,83 @@
       rel="stylesheet"
     />
     <style>
+      /* ─── TOKENS ─── */
       :root {
-        --cream: #faf8f4;
-        --warm: #f5ede0;
-        --rust: #c0392b;
-        --pin-red: #e60023;
-        --dark: #1a1210;
-        --mid: #5c4a42;
-        --light-text: #9e8a80;
-        --accent: #e8b4a0;
-        --card-bg: #fff;
-        --green: #27ae60;
-        --orange: #f39c12;
-        --border: #e8e0d8;
+        --ink: #0e0c0a;
+        --ink2: #3a322c;
+        --mute: #9a8f87;
+        --border: #e6ddd5;
+        --sand: #faf7f3;
+        --warm: #f4ede3;
+        --card: #ffffff;
+        --red: #c8382a;
+        --red2: #e04535;
+        --gold: #c49a3c;
+        --pin: #e60023;
+        --r20: 20px;
+        --r14: 14px;
+        --r100: 100px;
       }
       * {
         box-sizing: border-box;
         margin: 0;
         padding: 0;
       }
+      html {
+        scroll-behavior: smooth;
+      }
       body {
-        background: var(--cream);
-        font-family: "DM Sans", sans-serif;
-        color: var(--dark);
+        background: var(--sand);
+        font-family: "Outfit", sans-serif;
+        color: var(--ink);
         overflow-x: hidden;
       }
-
-      /* ── SETUP SCREEN ── */
-      #setupScreen {
-        position: fixed;
-        inset: 0;
-        background: var(--cream);
-        z-index: 9999;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 20px;
+      a {
+        text-decoration: none;
+        color: inherit;
       }
-      .setup-box {
-        background: #fff;
-        border-radius: 28px;
-        padding: 48px 40px;
-        max-width: 560px;
-        width: 100%;
-        box-shadow: 0 24px 80px rgba(0, 0, 0, 0.12);
-        text-align: center;
-      }
-      .setup-box .logo-big {
-        font-family: "Playfair Display", serif;
-        font-size: 42px;
-        font-weight: 900;
-        color: var(--pin-red);
-        letter-spacing: -2px;
-        margin-bottom: 8px;
-      }
-      .setup-box .logo-big span {
-        color: var(--dark);
-      }
-      .setup-box h2 {
-        font-family: "Playfair Display", serif;
-        font-size: 22px;
-        font-weight: 700;
-        margin-bottom: 12px;
-        color: var(--dark);
-      }
-      .setup-box p {
-        color: var(--light-text);
-        font-size: 14px;
-        line-height: 1.7;
-        margin-bottom: 28px;
-      }
-      .setup-box p a {
-        color: var(--rust);
-        font-weight: 600;
-      }
-      .setup-steps {
-        text-align: left;
-        background: var(--warm);
-        border-radius: 16px;
-        padding: 20px 24px;
-        margin-bottom: 28px;
-      }
-      .setup-steps li {
-        font-size: 13px;
-        color: var(--mid);
-        margin-bottom: 10px;
-        line-height: 1.5;
-        list-style: none;
-        display: flex;
-        gap: 10px;
-        align-items: flex-start;
-      }
-      .setup-steps li:last-child {
-        margin-bottom: 0;
-      }
-      .step-num {
-        background: var(--pin-red);
-        color: #fff;
-        border-radius: 100%;
-        width: 22px;
-        height: 22px;
-        min-width: 22px;
-        font-size: 11px;
-        font-weight: 700;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-top: 1px;
-      }
-      .setup-input-wrap {
-        position: relative;
-        margin-bottom: 12px;
-      }
-      .setup-input-wrap input {
-        width: 100%;
-        padding: 14px 18px;
-        border: 2px solid var(--border);
-        border-radius: 14px;
-        font-family: "DM Sans", sans-serif;
-        font-size: 14px;
-        color: var(--dark);
-        background: var(--warm);
-        outline: none;
-        transition: border-color 0.2s;
-      }
-      .setup-input-wrap input:focus {
-        border-color: var(--rust);
-        background: #fff;
-      }
-      .btn-setup {
-        width: 100%;
-        padding: 15px;
-        background: linear-gradient(135deg, var(--rust), var(--pin-red));
-        color: #fff;
-        border: none;
-        border-radius: 14px;
-        font-family: "Playfair Display", serif;
-        font-size: 18px;
-        font-weight: 700;
-        cursor: pointer;
-        transition: transform 0.2s, box-shadow 0.2s;
-      }
-      .btn-setup:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 28px rgba(192, 57, 43, 0.4);
-      }
-      .setup-note {
-        font-size: 11px;
-        color: var(--light-text);
-        margin-top: 12px;
+      img {
+        display: block;
       }
 
-      /* ── LOADING ── */
+      /* ─── SCROLLBAR ─── */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--warm);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--border);
+        border-radius: 3px;
+      }
+
+      /* ══════════════════════════════════
+   LOADING
+══════════════════════════════════ */
       #loadingScreen {
         position: fixed;
         inset: 0;
-        background: var(--cream);
+        background: var(--sand);
         z-index: 9998;
-        display: flex;
+        display: none;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 16px;
+        gap: 18px;
         transition: opacity 0.4s;
       }
       #loadingScreen.hidden {
         opacity: 0;
         pointer-events: none;
       }
-      .spinner {
-        width: 48px;
-        height: 48px;
-        border: 4px solid var(--border);
-        border-top-color: var(--pin-red);
+      .spin {
+        width: 44px;
+        height: 44px;
+        border: 3px solid var(--border);
+        border-top-color: var(--red);
         border-radius: 50%;
-        animation: spin 0.8s linear infinite;
+        animation: spin 0.75s linear infinite;
       }
       @keyframes spin {
         to {
@@ -199,263 +97,224 @@
         }
       }
       #loadingScreen p {
-        font-family: "Playfair Display", serif;
-        font-size: 18px;
-        color: var(--mid);
+        font-family: "Cormorant Garamond", serif;
+        font-size: 20px;
+        color: var(--ink2);
       }
 
-      /* ── NAV ── */
-      nav {
+      /* ══════════════════════════════════
+   NAV
+══════════════════════════════════ */
+      #mainNav {
+        display: none;
         background: #fff;
-        padding: 14px 32px;
-        display: flex;
+        padding: 0 40px;
+        height: 64px;
         align-items: center;
         justify-content: space-between;
-        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.07);
+        box-shadow: 0 1px 0 var(--border);
         position: sticky;
         top: 0;
         z-index: 200;
       }
-      .logo {
-        font-family: "Playfair Display", serif;
-        font-size: 26px;
-        font-weight: 900;
-        color: var(--pin-red);
+      .nav-logo {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 30px;
+        font-weight: 700;
+        color: var(--ink);
         letter-spacing: -1px;
-        text-decoration: none;
       }
-      .logo span {
-        color: var(--dark);
+      .nav-logo em {
+        color: var(--red);
+        font-style: italic;
       }
       .nav-search {
         flex: 1;
-        max-width: 440px;
-        margin: 0 24px;
+        max-width: 400px;
+        margin: 0 32px;
         position: relative;
       }
       .nav-search input {
         width: 100%;
-        padding: 10px 20px 10px 44px;
-        border-radius: 100px;
-        border: 2px solid var(--border);
+        padding: 9px 18px 9px 42px;
+        border-radius: var(--r100);
+        border: 1.5px solid var(--border);
         background: var(--warm);
-        font-family: "DM Sans", sans-serif;
-        font-size: 14px;
+        font-family: "Outfit", sans-serif;
+        font-size: 13px;
+        color: var(--ink);
         outline: none;
         transition: border-color 0.2s;
       }
       .nav-search input:focus {
-        border-color: var(--rust);
+        border-color: var(--red);
+        background: #fff;
       }
       .nav-search i {
         position: absolute;
-        left: 16px;
+        left: 15px;
         top: 50%;
         transform: translateY(-50%);
-        color: var(--light-text);
-        font-size: 15px;
+        color: var(--mute);
+        font-size: 14px;
       }
-      .nav-actions {
+      .nav-right {
         display: flex;
-        gap: 10px;
         align-items: center;
+        gap: 10px;
       }
-      .btn-add {
-        background: var(--dark);
-        color: #fff;
+      /* admin-only buttons — hidden by default */
+      .admin-only {
+        display: none;
+      }
+      .btn-nav {
+        padding: 8px 20px;
+        border-radius: var(--r100);
         border: none;
-        padding: 9px 18px;
-        border-radius: 100px;
-        font-family: "DM Sans", sans-serif;
+        cursor: pointer;
+        font-family: "Outfit", sans-serif;
         font-weight: 600;
         font-size: 13px;
-        cursor: pointer;
         display: flex;
         align-items: center;
         gap: 7px;
         transition: transform 0.15s, box-shadow 0.15s;
       }
-      .btn-add:hover {
+      .btn-add-nav {
+        background: var(--ink);
+        color: #fff;
+      }
+      .btn-add-nav:hover {
         transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+        box-shadow: 0 6px 18px rgba(14, 12, 10, 0.25);
       }
-      .btn-settings {
+      .btn-logout-nav {
         background: var(--warm);
-        color: var(--mid);
-        border: 2px solid var(--border);
-        padding: 9px 14px;
-        border-radius: 100px;
-        font-family: "DM Sans", sans-serif;
-        font-weight: 600;
-        font-size: 13px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        transition: all 0.15s;
+        color: var(--ink2);
+        border: 1.5px solid var(--border) !important;
       }
-      .btn-settings:hover {
+      .btn-logout-nav:hover {
         background: var(--border);
       }
       .btn-pin-nav {
-        background: var(--pin-red);
+        background: var(--pin);
         color: #fff;
-        border: none;
-        padding: 9px 18px;
-        border-radius: 100px;
-        font-family: "DM Sans", sans-serif;
-        font-weight: 600;
-        font-size: 13px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        gap: 7px;
-        transition: transform 0.15s, box-shadow 0.15s;
       }
       .btn-pin-nav:hover {
         transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(230, 0, 35, 0.35);
+        box-shadow: 0 6px 18px rgba(230, 0, 35, 0.35);
       }
 
-      /* ── SHARED NOTICE ── */
-      .shared-notice {
-        background: linear-gradient(135deg, #1a1210, #3d2620);
-        color: rgba(255, 255, 255, 0.7);
-        text-align: center;
-        padding: 10px 20px;
-        font-size: 12px;
-        letter-spacing: 0.5px;
+      /* ══════════════════════════════════
+   HERO
+══════════════════════════════════ */
+      #heroSection {
+        display: none;
       }
-      .shared-notice strong {
-        color: var(--accent);
-      }
-
-      /* ── HERO ── */
       .hero {
         background: linear-gradient(
-          135deg,
-          #1a1210 0%,
-          #3d2620 50%,
-          #c0392b 100%
+          150deg,
+          #0e0c0a 0%,
+          #2a1f18 55%,
+          #4a2218 100%
         );
-        padding: 80px 40px;
+        padding: 100px 40px 90px;
         text-align: center;
         position: relative;
         overflow: hidden;
       }
-      .hero::before {
+      .hero::after {
         content: "";
         position: absolute;
         inset: 0;
-        background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        pointer-events: none;
+        background: radial-gradient(
+          ellipse 70% 60% at 50% 100%,
+          rgba(200, 56, 42, 0.18) 0%,
+          transparent 70%
+        );
       }
-      .hero-tag {
+      .hero-eyebrow {
         display: inline-block;
-        background: rgba(255, 255, 255, 0.15);
-        color: var(--accent);
-        font-size: 11px;
+        font-size: 10px;
         font-weight: 600;
-        letter-spacing: 3px;
+        letter-spacing: 4px;
         text-transform: uppercase;
-        padding: 6px 16px;
-        border-radius: 100px;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        margin-bottom: 20px;
+        color: var(--gold);
+        background: rgba(196, 154, 60, 0.12);
+        border: 1px solid rgba(196, 154, 60, 0.3);
+        padding: 5px 18px;
+        border-radius: var(--r100);
+        margin-bottom: 24px;
       }
       .hero h1 {
-        font-family: "Playfair Display", serif;
-        font-size: clamp(36px, 6vw, 68px);
-        font-weight: 900;
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(44px, 7vw, 88px);
+        font-weight: 600;
         color: #fff;
-        line-height: 1.1;
-        margin-bottom: 18px;
+        line-height: 1.05;
+        margin-bottom: 20px;
+        letter-spacing: -1.5px;
       }
       .hero h1 em {
         font-style: italic;
-        color: var(--accent);
+        color: var(--gold);
       }
       .hero p {
-        color: rgba(255, 255, 255, 0.65);
-        font-size: 17px;
-        max-width: 500px;
-        margin: 0 auto 32px;
-        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 16px;
+        max-width: 460px;
+        margin: 0 auto 36px;
+        line-height: 1.7;
+        font-weight: 300;
       }
       .hero-cta {
         display: inline-flex;
         align-items: center;
         gap: 10px;
         background: #fff;
-        color: var(--dark);
-        padding: 14px 30px;
-        border-radius: 100px;
-        font-weight: 700;
+        color: var(--ink);
+        padding: 15px 34px;
+        border-radius: var(--r100);
+        font-weight: 600;
         font-size: 15px;
-        text-decoration: none;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
         transition: transform 0.2s, box-shadow 0.2s;
-        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
       }
       .hero-cta:hover {
         transform: translateY(-3px);
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
-        color: var(--rust);
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35);
+        color: var(--red);
       }
 
-      /* ── FILTERS ── */
-      .filter-bar {
-        padding: 28px 32px 8px;
-        display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
-        align-items: center;
+      /* ══════════════════════════════════
+   SHOP BODY
+══════════════════════════════════ */
+      #shopBody {
+        display: none;
       }
-      .filter-label {
-        font-size: 12px;
-        font-weight: 600;
-        letter-spacing: 1.5px;
-        text-transform: uppercase;
-        color: var(--light-text);
-        margin-right: 6px;
-      }
-      .pill {
-        padding: 8px 18px;
-        border-radius: 100px;
-        border: 2px solid var(--border);
-        background: #fff;
-        font-size: 13px;
-        font-weight: 500;
-        color: var(--mid);
-        cursor: pointer;
-        transition: all 0.2s;
-        font-family: "DM Sans", sans-serif;
-      }
-      .pill:hover,
-      .pill.active {
-        background: var(--dark);
-        border-color: var(--dark);
-        color: #fff;
-      }
-      .section-header {
-        padding: 24px 32px 4px;
+      .section-bar {
+        padding: 36px 40px 12px;
         display: flex;
         align-items: baseline;
-        gap: 16px;
+        justify-content: space-between;
       }
-      .section-header h2 {
-        font-family: "Playfair Display", serif;
-        font-size: 28px;
-        font-weight: 700;
+      .section-bar h2 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 32px;
+        font-weight: 600;
+        letter-spacing: -0.5px;
       }
-      .section-header span {
+      #countLabel {
         font-size: 13px;
-        color: var(--light-text);
+        color: var(--mute);
       }
 
-      /* ── MASONRY ── */
+      /* ─── MASONRY ─── */
       .masonry {
         columns: 5;
-        column-gap: 16px;
-        padding: 20px 32px 80px;
+        column-gap: 18px;
+        padding: 8px 40px 100px;
       }
       @media (max-width: 1400px) {
         .masonry {
@@ -467,257 +326,259 @@
           columns: 3;
         }
       }
-      @media (max-width: 768px) {
+      @media (max-width: 750px) {
         .masonry {
           columns: 2;
-          padding: 12px 16px 60px;
+          padding: 8px 16px 80px;
         }
-        nav {
-          padding: 12px 16px;
+        #mainNav {
+          padding: 0 16px;
         }
-        .nav-search {
-          margin: 0 10px;
+        #mainNav .nav-search {
+          margin: 0 12px;
         }
         .hero {
-          padding: 50px 20px;
+          padding: 64px 20px 56px;
         }
-        .filter-bar,
-        .section-header {
-          padding-left: 16px;
-          padding-right: 16px;
+        .section-bar {
+          padding: 24px 16px 8px;
         }
       }
-      @media (max-width: 480px) {
+      @media (max-width: 420px) {
         .masonry {
           columns: 2;
         }
-        .btn-add span,
         .btn-pin-nav span,
-        .btn-settings span {
+        .btn-add-nav span {
           display: none;
         }
       }
 
-      /* ── PIN CARD ── */
-      .pin-card {
+      /* ─── CARD ─── */
+      .card {
         break-inside: avoid;
-        margin-bottom: 16px;
-        border-radius: 20px;
+        margin-bottom: 18px;
+        border-radius: var(--r20);
         overflow: hidden;
-        background: var(--card-bg);
-        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
-        cursor: pointer;
-        transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275),
-          box-shadow 0.25s;
+        background: var(--card);
+        box-shadow: 0 2px 14px rgba(0, 0, 0, 0.06);
+        transition: transform 0.28s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+          box-shadow 0.28s;
         position: relative;
-        animation: fadeUp 0.5s both;
+        animation: up 0.5s both;
+        cursor: default;
       }
-      @keyframes fadeUp {
+      @keyframes up {
         from {
           opacity: 0;
-          transform: translateY(22px);
+          transform: translateY(20px);
         }
         to {
           opacity: 1;
           transform: translateY(0);
         }
       }
-      .pin-card:hover {
-        transform: translateY(-6px) scale(1.01);
-        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.14);
+      .card:hover {
+        transform: translateY(-7px) scale(1.012);
+        box-shadow: 0 18px 52px rgba(0, 0, 0, 0.13);
       }
-      .pin-card:hover .overlay {
+      .card:hover .card-overlay {
         opacity: 1;
       }
-      .pin-card:hover .btn-shop {
+      .card:hover .cta-shop {
         transform: translateY(0);
         opacity: 1;
       }
-      .pin-card:hover .save-btn,
-      .pin-card:hover .delete-btn {
+      .card:hover .btn-pin-card,
+      .card:hover .btn-del-card {
         opacity: 1;
       }
-      .card-img-wrap {
+
+      /* image */
+      .card-img {
         position: relative;
         overflow: hidden;
       }
-      .card-img-wrap img {
+      .card-img img {
         width: 100%;
-        display: block;
         object-fit: cover;
-        min-height: 180px;
-        max-height: 380px;
-        transition: transform 0.4s;
+        min-height: 160px;
+        max-height: 400px;
+        transition: transform 0.42s ease;
       }
-      .pin-card:hover .card-img-wrap img {
-        transform: scale(1.05);
+      .card:hover .card-img img {
+        transform: scale(1.06);
       }
-      .overlay {
+
+      /* overlay */
+      .card-overlay {
         position: absolute;
         inset: 0;
         background: linear-gradient(
           to bottom,
-          transparent 40%,
-          rgba(20, 10, 8, 0.6) 100%
+          transparent 35%,
+          rgba(10, 7, 5, 0.65) 100%
         );
         opacity: 0;
         transition: opacity 0.3s;
         display: flex;
         align-items: flex-end;
-        padding: 16px;
+        padding: 14px;
       }
-      .btn-shop {
-        background: var(--pin-red);
+      .cta-shop {
+        width: 100%;
+        padding: 9px 0;
+        background: var(--red);
         color: #fff;
         border: none;
-        padding: 9px 18px;
-        border-radius: 100px;
-        font-size: 13px;
+        border-radius: var(--r100);
+        font-family: "Outfit", sans-serif;
         font-weight: 700;
-        font-family: "DM Sans", sans-serif;
+        font-size: 13px;
         display: flex;
         align-items: center;
+        justify-content: center;
         gap: 7px;
-        transform: translateY(10px);
+        cursor: pointer;
+        text-decoration: none;
+        transform: translateY(8px);
         opacity: 0;
         transition: all 0.25s;
-        cursor: pointer;
-        width: 100%;
-        justify-content: center;
-        text-decoration: none;
       }
-      .btn-shop:hover {
-        background: #cc0020;
+      .cta-shop:hover {
+        background: #b03020;
         color: #fff;
       }
-      .save-btn {
+
+      /* corner buttons */
+      .btn-pin-card {
         position: absolute;
-        top: 12px;
-        right: 12px;
-        background: var(--pin-red);
+        top: 11px;
+        right: 11px;
+        width: 34px;
+        height: 34px;
+        background: var(--pin);
         color: #fff;
-        width: 36px;
-        height: 36px;
-        border-radius: 100%;
         border: none;
-        font-size: 13px;
+        border-radius: 50%;
+        font-size: 12px;
         cursor: pointer;
         opacity: 0;
         transition: opacity 0.25s, transform 0.2s;
         display: flex;
         align-items: center;
         justify-content: center;
-        z-index: 5;
+        z-index: 4;
       }
-      .save-btn:hover {
+      .btn-pin-card:hover {
         transform: scale(1.12);
       }
-      .delete-btn {
+      /* admin delete — hidden for public */
+      .btn-del-card {
         position: absolute;
-        top: 12px;
-        left: 12px;
-        background: rgba(0, 0, 0, 0.7);
+        top: 11px;
+        left: 11px;
+        width: 34px;
+        height: 34px;
+        background: rgba(10, 7, 5, 0.72);
         color: #fff;
-        width: 36px;
-        height: 36px;
-        border-radius: 100%;
         border: none;
-        font-size: 13px;
+        border-radius: 50%;
+        font-size: 12px;
         cursor: pointer;
         opacity: 0;
         transition: opacity 0.25s, transform 0.2s, background 0.2s;
         display: flex;
         align-items: center;
         justify-content: center;
-        z-index: 5;
+        z-index: 4;
+        display: none; /* hidden until admin */
       }
-      .delete-btn:hover {
-        background: #e74c3c;
+      .btn-del-card:hover {
+        background: var(--red);
         transform: scale(1.12);
       }
-      .badge-deal {
+
+      /* badge */
+      .badge {
         position: absolute;
-        top: 52px;
-        left: 12px;
-        background: var(--orange);
-        color: #fff;
+        top: 11px;
+        left: 11px;
         font-size: 10px;
-        font-weight: 700;
+        font-weight: 600;
         letter-spacing: 1px;
         text-transform: uppercase;
-        padding: 4px 10px;
-        border-radius: 100px;
+        padding: 4px 11px;
+        border-radius: var(--r100);
+        z-index: 3;
+      }
+      .badge-deal {
+        background: var(--gold);
+        color: #fff;
       }
       .badge-new {
-        position: absolute;
-        top: 52px;
-        left: 12px;
-        background: var(--green);
+        background: #2d9c6a;
         color: #fff;
-        font-size: 10px;
-        font-weight: 700;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        padding: 4px 10px;
-        border-radius: 100px;
       }
+
+      /* body */
       .card-body {
         padding: 14px 16px 16px;
       }
-      .card-category {
+      .card-cat {
         font-size: 10px;
         font-weight: 600;
-        letter-spacing: 1.5px;
+        letter-spacing: 1.8px;
         text-transform: uppercase;
-        color: var(--rust);
+        color: var(--red);
         margin-bottom: 5px;
       }
-      .card-title {
-        font-family: "Playfair Display", serif;
-        font-size: 15px;
-        font-weight: 700;
-        line-height: 1.35;
-        color: var(--dark);
-        margin-bottom: 8px;
+      .card-name {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 1.3;
+        color: var(--ink);
+        margin-bottom: 9px;
       }
-      .card-price-row {
+      .card-prices {
         display: flex;
         align-items: center;
         gap: 8px;
-        margin-bottom: 10px;
         flex-wrap: wrap;
+        margin-bottom: 9px;
       }
-      .price-now {
+      .price {
         font-size: 17px;
-        font-weight: 700;
+        font-weight: 600;
       }
       .price-old {
         font-size: 13px;
-        color: var(--light-text);
+        color: var(--mute);
         text-decoration: line-through;
       }
       .price-save {
         font-size: 11px;
-        color: var(--green);
+        color: #2d9c6a;
         font-weight: 600;
       }
       .stars {
-        color: var(--orange);
+        color: var(--gold);
         font-size: 11px;
       }
       .stars span {
-        color: var(--light-text);
+        color: var(--mute);
+        margin-left: 3px;
         font-size: 11px;
-        margin-left: 4px;
       }
-      .card-footer-links {
+      .card-links {
         display: flex;
-        gap: 10px;
+        gap: 9px;
         margin-top: 12px;
         padding-top: 12px;
         border-top: 1px solid #f0e8e0;
       }
-      .link-pill {
+      .lnk {
         flex: 1;
         text-align: center;
         padding: 7px;
@@ -727,70 +588,58 @@
         text-decoration: none;
         transition: all 0.2s;
       }
-      .link-amazon {
+      .lnk-amz {
         background: #fff8f0;
-        color: #c45500;
+        color: #b84c00;
         border: 1.5px solid #f5d9c0;
       }
-      .link-amazon:hover {
+      .lnk-amz:hover {
         background: #ff9900;
         color: #fff;
         border-color: #ff9900;
       }
-      .link-pin {
+      .lnk-pin {
         background: #fff0f2;
-        color: var(--pin-red);
+        color: var(--pin);
         border: 1.5px solid #ffc8cc;
       }
-      .link-pin:hover {
-        background: var(--pin-red);
+      .lnk-pin:hover {
+        background: var(--pin);
         color: #fff;
-        border-color: var(--pin-red);
-      }
-      .empty-state {
-        column-span: all;
-        text-align: center;
-        padding: 80px 20px;
-        color: var(--light-text);
-      }
-      .empty-state i {
-        font-size: 48px;
-        margin-bottom: 16px;
-        opacity: 0.4;
-        display: block;
-      }
-      .empty-state h3 {
-        font-family: "Playfair Display", serif;
-        font-size: 24px;
-        color: var(--mid);
-        margin-bottom: 8px;
-      }
-      .empty-state p {
-        font-size: 14px;
-      }
-      .empty-state button {
-        margin-top: 20px;
-        background: var(--dark);
-        color: #fff;
-        border: none;
-        padding: 12px 28px;
-        border-radius: 100px;
-        font-family: "DM Sans", sans-serif;
-        font-weight: 600;
-        font-size: 14px;
-        cursor: pointer;
-        transition: transform 0.2s;
-      }
-      .empty-state button:hover {
-        transform: translateY(-2px);
+        border-color: var(--pin);
       }
 
-      /* ── MODAL ── */
-      .modal-overlay {
+      /* empty */
+      .empty {
+        column-span: all;
+        text-align: center;
+        padding: 90px 20px;
+        color: var(--mute);
+      }
+      .empty i {
+        font-size: 44px;
+        opacity: 0.3;
+        display: block;
+        margin-bottom: 18px;
+      }
+      .empty h3 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 26px;
+        color: var(--ink2);
+        margin-bottom: 8px;
+      }
+      .empty p {
+        font-size: 14px;
+      }
+
+      /* ══════════════════════════════════
+   ADMIN LOGIN MODAL
+══════════════════════════════════ */
+      .modal-bg {
         position: fixed;
         inset: 0;
-        background: rgba(20, 10, 8, 0.6);
-        z-index: 999;
+        background: rgba(10, 7, 5, 0.65);
+        z-index: 500;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -798,90 +647,120 @@
         opacity: 0;
         pointer-events: none;
         transition: opacity 0.3s;
-        backdrop-filter: blur(4px);
+        backdrop-filter: blur(6px);
       }
-      .modal-overlay.open {
+      .modal-bg.open {
         opacity: 1;
         pointer-events: all;
       }
-      .modal-box {
+      .modal {
         background: #fff;
-        border-radius: 28px;
+        border-radius: 26px;
         width: 100%;
-        max-width: 640px;
-        max-height: 92vh;
-        overflow-y: auto;
-        box-shadow: 0 40px 100px rgba(0, 0, 0, 0.3);
-        transform: translateY(20px) scale(0.97);
+        max-width: 420px;
+        box-shadow: 0 40px 100px rgba(0, 0, 0, 0.22);
+        transform: scale(0.96) translateY(16px);
         transition: transform 0.3s;
       }
-      .modal-overlay.open .modal-box {
-        transform: translateY(0) scale(1);
+      .modal-bg.open .modal {
+        transform: scale(1) translateY(0);
       }
-      .modal-header {
-        padding: 28px 32px 20px;
+      .modal-head {
+        padding: 28px 30px 20px;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        position: sticky;
-        top: 0;
-        background: #fff;
-        z-index: 10;
         border-bottom: 1px solid var(--border);
       }
-      .modal-header h3 {
-        font-family: "Playfair Display", serif;
+      .modal-head h3 {
+        font-family: "Cormorant Garamond", serif;
         font-size: 24px;
-        font-weight: 700;
+        font-weight: 600;
       }
-      .modal-close {
-        width: 38px;
-        height: 38px;
-        border-radius: 100%;
+      .modal-x {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
         background: var(--warm);
         border: none;
-        font-size: 18px;
+        font-size: 17px;
         cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: center;
         transition: background 0.2s;
       }
-      .modal-close:hover {
-        background: #f0e0d8;
+      .modal-x:hover {
+        background: var(--border);
       }
-      .modal-body {
-        padding: 28px 32px 32px;
+      .modal-body-p {
+        padding: 26px 30px 30px;
       }
-      .form-group {
-        margin-bottom: 20px;
+      .fgrp {
+        margin-bottom: 18px;
       }
-      .form-group label {
+      .fgrp label {
         display: block;
-        font-size: 12px;
-        font-weight: 700;
-        letter-spacing: 1px;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 1.2px;
         text-transform: uppercase;
-        color: var(--mid);
-        margin-bottom: 8px;
+        color: var(--ink2);
+        margin-bottom: 7px;
       }
-      .form-group input,
-      .form-group select {
+      .finput {
         width: 100%;
         padding: 12px 16px;
-        border: 2px solid var(--border);
-        border-radius: 14px;
-        font-family: "DM Sans", sans-serif;
+        border: 1.5px solid var(--border);
+        border-radius: var(--r14);
+        font-family: "Outfit", sans-serif;
         font-size: 14px;
-        color: var(--dark);
+        color: var(--ink);
         background: var(--warm);
         outline: none;
         transition: border-color 0.2s;
       }
-      .form-group input:focus,
-      .form-group select:focus {
-        border-color: var(--rust);
+      .finput:focus {
+        border-color: var(--red);
         background: #fff;
+      }
+      .btn-primary {
+        width: 100%;
+        padding: 14px;
+        background: linear-gradient(135deg, var(--red), var(--red2));
+        color: #fff;
+        border: none;
+        border-radius: var(--r14);
+        font-family: "Cormorant Garamond", serif;
+        font-size: 19px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 28px rgba(200, 56, 42, 0.4);
+      }
+      .btn-primary:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+      }
+      .login-err {
+        font-size: 13px;
+        color: var(--red);
+        text-align: center;
+        margin-bottom: 14px;
+        display: none;
+      }
+
+      /* ══════════════════════════════════
+   ADD PRODUCT MODAL
+══════════════════════════════════ */
+      #addModal .modal {
+        max-width: 640px;
+        max-height: 92vh;
+        overflow-y: auto;
       }
       .form-row {
         display: grid;
@@ -890,198 +769,108 @@
       }
       .form-hint {
         font-size: 11px;
-        color: var(--light-text);
+        color: var(--mute);
         margin-top: 5px;
       }
-      .img-preview {
+      .img-prev {
         width: 100%;
-        height: 160px;
-        border-radius: 14px;
+        height: 158px;
+        border-radius: var(--r14);
         border: 2px dashed var(--border);
         background: var(--warm);
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        color: var(--light-text);
+        color: var(--mute);
         font-size: 13px;
         gap: 8px;
         overflow: hidden;
         margin-top: 8px;
       }
-      .img-preview img {
+      .img-prev img {
         width: 100%;
         height: 100%;
         object-fit: cover;
         border-radius: 12px;
       }
-      .img-preview i {
-        font-size: 28px;
-        opacity: 0.4;
+      .img-prev i {
+        font-size: 26px;
+        opacity: 0.35;
       }
-      .badge-selector {
+      .badge-row {
         display: flex;
-        gap: 10px;
+        gap: 9px;
         flex-wrap: wrap;
       }
-      .badge-opt {
-        padding: 8px 16px;
-        border-radius: 100px;
-        border: 2px solid var(--border);
+      .bopt {
+        padding: 7px 15px;
+        border-radius: var(--r100);
+        border: 1.5px solid var(--border);
         background: #fff;
         font-size: 13px;
         font-weight: 500;
         cursor: pointer;
+        font-family: "Outfit", sans-serif;
         transition: all 0.2s;
-        font-family: "DM Sans", sans-serif;
       }
-      .badge-opt.sel-none {
-        background: var(--dark);
-        border-color: var(--dark);
+      .bopt.s-none {
+        background: var(--ink);
+        border-color: var(--ink);
         color: #fff;
       }
-      .badge-opt.sel-deal {
-        background: var(--orange);
-        border-color: var(--orange);
+      .bopt.s-deal {
+        background: var(--gold);
+        border-color: var(--gold);
         color: #fff;
       }
-      .badge-opt.sel-new {
-        background: var(--green);
-        border-color: var(--green);
+      .bopt.s-new {
+        background: #2d9c6a;
+        border-color: #2d9c6a;
         color: #fff;
       }
-      .star-input {
+      .star-row {
         display: flex;
-        gap: 6px;
+        gap: 5px;
       }
-      .star-input button {
+      .star-row button {
         background: none;
         border: none;
         font-size: 22px;
         cursor: pointer;
         color: #ddd;
-        transition: color 0.15s, transform 0.15s;
+        transition: color 0.12s, transform 0.12s;
         padding: 0;
       }
-      .star-input button.active {
-        color: var(--orange);
+      .star-row button.on {
+        color: var(--gold);
       }
-      .star-input button:hover {
+      .star-row button:hover {
         transform: scale(1.2);
-        color: var(--orange);
-      }
-      .btn-submit {
-        width: 100%;
-        padding: 15px;
-        background: linear-gradient(135deg, var(--rust), var(--pin-red));
-        color: #fff;
-        border: none;
-        border-radius: 14px;
-        font-family: "Playfair Display", serif;
-        font-size: 18px;
-        font-weight: 700;
-        cursor: pointer;
-        transition: transform 0.2s, box-shadow 0.2s;
-        margin-top: 8px;
-      }
-      .btn-submit:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 28px rgba(192, 57, 43, 0.4);
-      }
-      .btn-submit:disabled {
-        opacity: 0.6;
-        cursor: not-allowed;
-        transform: none;
+        color: var(--gold);
       }
 
-      /* ── CONFIRM ── */
-      .confirm-overlay {
-        position: fixed;
-        inset: 0;
-        background: rgba(20, 10, 8, 0.55);
-        z-index: 1000;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 20px;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.25s;
-        backdrop-filter: blur(3px);
-      }
-      .confirm-overlay.open {
-        opacity: 1;
-        pointer-events: all;
-      }
-      .confirm-box {
-        background: #fff;
-        border-radius: 20px;
-        padding: 36px 32px;
-        max-width: 380px;
-        width: 100%;
-        text-align: center;
-        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
-        transform: scale(0.95);
-        transition: transform 0.25s;
-      }
-      .confirm-overlay.open .confirm-box {
-        transform: scale(1);
-      }
-      .confirm-box h4 {
-        font-family: "Playfair Display", serif;
-        font-size: 22px;
-        font-weight: 700;
-        margin-bottom: 10px;
-      }
-      .confirm-box p {
-        color: var(--light-text);
-        font-size: 14px;
-        line-height: 1.5;
-        margin-bottom: 28px;
-      }
-      .confirm-actions {
-        display: flex;
-        gap: 12px;
-      }
-      .confirm-actions button {
-        flex: 1;
-        padding: 12px;
-        border-radius: 100px;
-        font-family: "DM Sans", sans-serif;
-        font-weight: 700;
-        font-size: 14px;
-        cursor: pointer;
-        border: 2px solid transparent;
-        transition: all 0.2s;
-      }
-      .btn-cancel-c {
-        background: var(--warm);
-        color: var(--mid);
-        border-color: var(--border) !important;
-      }
-      .btn-cancel-c:hover {
-        background: var(--border);
-      }
-      .btn-confirm-del {
-        background: var(--rust);
-        color: #fff;
-      }
-      .btn-confirm-del:hover {
-        background: #a93226;
+      /* ══════════════════════════════════
+   CONFIRM DELETE
+══════════════════════════════════ */
+      #confirmModal .modal {
+        max-width: 360px;
       }
 
-      /* ── TOAST ── */
+      /* ══════════════════════════════════
+   TOAST
+══════════════════════════════════ */
       .toast {
         position: fixed;
         bottom: 28px;
         left: 50%;
-        transform: translateX(-50%) translateY(20px);
-        background: var(--dark);
+        transform: translateX(-50%) translateY(16px);
+        background: var(--ink);
         color: #fff;
-        padding: 12px 24px;
-        border-radius: 100px;
+        padding: 11px 24px;
+        border-radius: var(--r100);
         font-size: 13px;
-        font-weight: 600;
+        font-weight: 500;
         z-index: 9999;
         opacity: 0;
         transition: all 0.3s;
@@ -1092,42 +881,45 @@
         opacity: 1;
         transform: translateX(-50%) translateY(0);
       }
-      .toast.success {
-        background: var(--green);
+      .toast.ok {
+        background: #2d9c6a;
       }
-      .toast.error {
-        background: var(--rust);
+      .toast.err {
+        background: var(--red);
       }
 
+      /* ══════════════════════════════════
+   FOOTER
+══════════════════════════════════ */
       footer {
-        background: var(--dark);
-        color: rgba(255, 255, 255, 0.5);
+        background: var(--ink);
+        color: rgba(255, 255, 255, 0.35);
         text-align: center;
-        padding: 30px;
-        font-size: 13px;
-      }
-      footer a {
-        color: var(--accent);
-        text-decoration: none;
+        padding: 32px 20px;
+        font-size: 12px;
+        line-height: 1.8;
       }
       footer strong {
-        color: rgba(255, 255, 255, 0.85);
+        color: rgba(255, 255, 255, 0.7);
+      }
+      footer a {
+        color: var(--gold);
       }
       .scroll-top {
         position: fixed;
         bottom: 28px;
         right: 28px;
-        width: 46px;
-        height: 46px;
-        background: var(--pin-red);
+        width: 44px;
+        height: 44px;
+        background: var(--red);
         color: #fff;
         border: none;
-        border-radius: 100%;
-        font-size: 16px;
+        border-radius: 50%;
+        font-size: 15px;
         cursor: pointer;
-        box-shadow: 0 4px 16px rgba(230, 0, 35, 0.4);
+        box-shadow: 0 4px 16px rgba(200, 56, 42, 0.45);
         transition: transform 0.2s;
-        z-index: 999;
+        z-index: 998;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -1135,189 +927,101 @@
       .scroll-top:hover {
         transform: scale(1.1) translateY(-2px);
       }
-      @media (max-width: 640px) {
+
+      @media (max-width: 600px) {
         .form-row {
           grid-template-columns: 1fr;
         }
-        .modal-body {
+        .modal-body-p {
           padding: 20px;
         }
-        .modal-header {
+        .modal-head {
           padding: 20px;
+        }
+        .setup-inner {
+          padding: 36px 24px;
         }
       }
     </style>
   </head>
   <body>
-    <!-- ══════════════════════════════════════
-     SETUP SCREEN (shown on first use)
-══════════════════════════════════════ -->
-    <div id="setupScreen">
-      <div class="setup-box">
-        <div class="logo-big">Pin<span>Shop</span></div>
-        <h2>Connect Your Database</h2>
-        <p>
-          PinShop uses
-          <a href="https://jsonbin.io" target="_blank">JSONBin.io</a> (free) to
-          store products so everyone sees the same list across refreshes and
-          devices.
-        </p>
-        <div class="setup-steps">
-          <ol style="list-style: none; padding: 0">
-            <li>
-              <span class="step-num">1</span> Go to
-              <a
-                href="https://jsonbin.io"
-                target="_blank"
-                style="color: var(--rust); font-weight: 600"
-                >jsonbin.io</a
-              >
-              and sign up free
-            </li>
-            <li>
-              <span class="step-num">2</span> Click
-              <strong>"+ New Bin"</strong>, paste
-              <code
-                style="
-                  background: #fff;
-                  padding: 2px 6px;
-                  border-radius: 6px;
-                  font-size: 12px;
-                "
-                >{"products":[]}</code
-              >, click Create
-            </li>
-            <li>
-              <span class="step-num">3</span> Copy the
-              <strong>Bin ID</strong> (from the URL, looks like
-              <code
-                style="
-                  background: #fff;
-                  padding: 2px 6px;
-                  border-radius: 6px;
-                  font-size: 12px;
-                "
-                >67abc123...</code
-              >)
-            </li>
-            <li>
-              <span class="step-num">4</span> Go to <strong>API Keys</strong> in
-              your account, copy your <strong>Access Key</strong>
-            </li>
-            <li>
-              <span class="step-num">5</span> Paste both below — these are saved
-              in your browser only
-            </li>
-          </ol>
-        </div>
-        <div class="setup-input-wrap">
-          <input
-            type="text"
-            id="inputBinId"
-            placeholder="Bin ID  (e.g. 67abc123def456...)"
-          />
-        </div>
-        <div class="setup-input-wrap">
-          <input
-            type="text"
-            id="inputApiKey"
-            placeholder="API Access Key  (e.g. $2a$10$...)"
-          />
-        </div>
-        <button class="btn-setup" onclick="saveConfig()">
-          ✦ Connect & Open Shop
-        </button>
-        <p class="setup-note">
-          Your credentials are stored only in this browser's localStorage —
-          never sent anywhere except JSONBin.
-        </p>
-      </div>
+    <!-- ══════════════ LOADING ══════════════ -->
+    <div id="loadingScreen">
+      <div class="spin"></div>
+      <p>Loading Velvra…</p>
     </div>
 
-    <!-- LOADING -->
-    <div id="loadingScreen" style="display: none">
-      <div class="spinner"></div>
-      <p>Loading your shop…</p>
-    </div>
-
-    <!-- SHARED NOTICE -->
-    <div class="shared-notice" id="mainContent" style="display: none">
-      <strong>🌐 Shared Shop</strong> — Products added here are visible to
-      everyone who opens this page
-    </div>
-
-    <!-- NAV -->
-    <nav id="mainNav" style="display: none">
-      <a href="#" class="logo">Pin<span>Shop</span></a>
+    <!-- ══════════════ NAV ══════════════ -->
+    <nav id="mainNav">
+      <div class="nav-logo">Vel<em>vra</em></div>
       <div class="nav-search">
         <i class="fas fa-search"></i>
         <input
           type="text"
           placeholder="Search products…"
           id="searchInput"
-          oninput="applyFilters()"
+          oninput="render()"
         />
       </div>
-      <div class="nav-actions">
-        <button class="btn-add" onclick="openAdmin()">
+      <div class="nav-right">
+        <!-- visible to everyone -->
+        <button
+          class="btn-nav btn-pin-nav"
+          onclick="window.open('https://pinterest.com','_blank')"
+        >
+          <i class="fab fa-pinterest"></i><span> Pinterest</span>
+        </button>
+        <!-- admin only -->
+        <button class="btn-nav btn-add-nav admin-only" onclick="openAddModal()">
           <i class="fas fa-plus"></i><span> Add Product</span>
         </button>
         <button
-          class="btn-settings"
-          onclick="resetConfig()"
-          title="Change database settings"
+          class="btn-nav btn-logout-nav admin-only"
+          onclick="adminLogout()"
+          title="Log out"
         >
-          <i class="fas fa-cog"></i><span> Settings</span>
+          <i class="fas fa-sign-out-alt"></i>
         </button>
-        <button class="btn-pin-nav">
-          <i class="fab fa-pinterest"></i><span> Pinterest</span>
+        <!-- login (shown when not admin) -->
+        <button
+          class="btn-nav btn-logout-nav"
+          id="btnAdminLogin"
+          onclick="openLoginModal()"
+          title="Admin login"
+          style="padding: 8px 12px"
+        >
+          <i class="fas fa-lock"></i>
         </button>
       </div>
     </nav>
 
-    <!-- HERO -->
-    <section class="hero" id="heroSection" style="display: none">
-      <div class="hero-tag">✦ Curated Picks · Amazon Affiliate</div>
-      <h1>Things Worth<br /><em>Obsessing Over</em></h1>
-      <p>
-        Hand-picked products I love — click to shop on Amazon, or save the pin
-        to your boards.
-      </p>
-      <a href="#products" class="hero-cta">
-        <i class="fas fa-shopping-bag"></i> Browse All Finds
-      </a>
+    <!-- ══════════════ HERO ══════════════ -->
+    <section id="heroSection">
+      <div class="hero">
+        <div class="hero-eyebrow">✦ Curated · Affiliate Picks</div>
+        <h1>Find Things<br />Worth <em>Loving</em></h1>
+        <p>
+          Every product hand-picked and linked directly to Amazon. Browse, save,
+          shop.
+        </p>
+        <a href="#shopBody" class="hero-cta">
+          <i class="fas fa-shopping-bag"></i> Explore All Picks
+        </a>
+      </div>
     </section>
 
-    <div id="shopBody" style="display: none">
-      <div class="filter-bar" id="products">
-        <span class="filter-label">Filter</span>
-        <button class="pill active" onclick="filterCat('all',this)">All</button>
-        <button class="pill" onclick="filterCat('home',this)">🏠 Home</button>
-        <button class="pill" onclick="filterCat('tech',this)">💻 Tech</button>
-        <button class="pill" onclick="filterCat('beauty',this)">
-          ✨ Beauty
-        </button>
-        <button class="pill" onclick="filterCat('kitchen',this)">
-          🍳 Kitchen
-        </button>
-        <button class="pill" onclick="filterCat('fitness',this)">
-          💪 Fitness
-        </button>
-        <button class="pill" onclick="filterCat('fashion',this)">
-          👗 Fashion
-        </button>
-        <button class="pill" onclick="filterCat('other',this)">🌟 Other</button>
+    <!-- ══════════════ SHOP BODY ══════════════ -->
+    <div id="shopBody">
+      <div class="section-bar">
+        <h2>All Picks</h2>
+        <span id="countLabel">0 products</span>
       </div>
-      <div class="section-header">
-        <h2>My Curated Finds</h2>
-        <span id="countLabel">Loading…</span>
-      </div>
-      <div class="masonry" id="masonryGrid"></div>
+      <div class="masonry" id="grid"></div>
       <footer>
         <p>
-          <strong>PinShop</strong> · As an Amazon Associate I earn from
-          qualifying purchases.<br />
-          Links are <a href="#">affiliate links</a>. Prices may vary.
+          <strong>Velvra</strong> — Curated affiliate picks.<br />
+          As an Amazon Associate I earn from qualifying purchases. Links are
+          <a href="#">affiliate links</a>. Prices may vary.
         </p>
       </footer>
     </div>
@@ -1329,31 +1033,58 @@
       <i class="fas fa-arrow-up"></i>
     </button>
 
-    <!-- ══ ADMIN MODAL ══ -->
-    <div
-      class="modal-overlay"
-      id="adminModal"
-      onclick="closeAdminOutside(event)"
-    >
-      <div class="modal-box">
-        <div class="modal-header">
-          <h3 id="modalTitle">✦ Add New Product</h3>
-          <button class="modal-close" onclick="closeAdmin()">✕</button>
+    <!-- ══════════════ ADMIN LOGIN MODAL ══════════════ -->
+    <div class="modal-bg" id="loginModal" onclick="closeBg('loginModal',event)">
+      <div class="modal">
+        <div class="modal-head">
+          <h3>Admin Login</h3>
+          <button class="modal-x" onclick="closeModal('loginModal')">✕</button>
         </div>
-        <div class="modal-body">
-          <div class="form-group">
-            <label>Product Name *</label>
+        <div class="modal-body-p">
+          <p class="login-err" id="loginErr">Wrong password. Try again.</p>
+          <div class="fgrp">
+            <label>Password</label>
             <input
-              type="text"
-              id="f_title"
-              placeholder="e.g. Minimalist Ceramic Lamp"
+              class="finput"
+              type="password"
+              id="loginPass"
+              placeholder="Enter admin password"
+              onkeydown="if(event.key==='Enter')doLogin()"
             />
           </div>
+          <button class="btn-primary" onclick="doLogin()">Unlock Admin</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════ ADD PRODUCT MODAL ══════════════ -->
+    <div class="modal-bg" id="addModal" onclick="closeBg('addModal',event)">
+      <div
+        class="modal"
+        style="max-width: 640px; max-height: 92vh; overflow-y: auto"
+      >
+        <div
+          class="modal-head"
+          style="position: sticky; top: 0; background: #fff; z-index: 5"
+        >
+          <h3 id="addModalTitle">✦ Add Product</h3>
+          <button class="modal-x" onclick="closeModal('addModal')">✕</button>
+        </div>
+        <div class="modal-body-p">
+          <div class="fgrp">
+            <label>Product Name *</label>
+            <input
+              class="finput"
+              id="f_name"
+              placeholder="e.g. Ceramic Table Lamp"
+            />
+          </div>
+
           <div class="form-row">
-            <div class="form-group">
+            <div class="fgrp">
               <label>Category *</label>
-              <select id="f_category">
-                <option value="">Select category</option>
+              <select class="finput" id="f_cat">
+                <option value="">Select…</option>
                 <option value="home">🏠 Home</option>
                 <option value="tech">💻 Tech</option>
                 <option value="beauty">✨ Beauty</option>
@@ -1363,574 +1094,596 @@
                 <option value="other">🌟 Other</option>
               </select>
             </div>
-            <div class="form-group">
+            <div class="fgrp">
               <label>Badge</label>
-              <div class="badge-selector">
-                <button
-                  class="badge-opt sel-none"
-                  onclick="selectBadge('none')"
-                >
+              <div class="badge-row">
+                <button class="bopt s-none" onclick="setBadge('none')">
                   None
                 </button>
-                <button class="badge-opt" onclick="selectBadge('deal')">
-                  🔥 Deal
-                </button>
-                <button class="badge-opt" onclick="selectBadge('new')">
-                  ✦ New
-                </button>
+                <button class="bopt" onclick="setBadge('deal')">🔥 Deal</button>
+                <button class="bopt" onclick="setBadge('new')">✦ New</button>
               </div>
             </div>
           </div>
+
           <div class="form-row">
-            <div class="form-group">
+            <div class="fgrp">
               <label>Price *</label>
-              <input type="text" id="f_price" placeholder="$49.99" />
+              <input class="finput" id="f_price" placeholder="$49.99" />
             </div>
-            <div class="form-group">
+            <div class="fgrp">
               <label
-                >Original Price
+                >Old Price
                 <span
                   style="
                     font-weight: 400;
                     text-transform: none;
                     letter-spacing: 0;
-                    color: var(--light-text);
+                    color: var(--mute);
                   "
                   >(optional)</span
                 ></label
               >
-              <input type="text" id="f_oldPrice" placeholder="$79.99" />
+              <input class="finput" id="f_oldprice" placeholder="$79.99" />
             </div>
           </div>
+
           <div class="form-row">
-            <div class="form-group">
-              <label>Star Rating</label>
-              <div class="star-input" id="starInput">
-                <button onclick="setRating(1)">★</button>
-                <button onclick="setRating(2)">★</button>
-                <button onclick="setRating(3)">★</button>
-                <button onclick="setRating(4)">★</button>
-                <button onclick="setRating(5)">★</button>
+            <div class="fgrp">
+              <label>Stars</label>
+              <div class="star-row" id="starRow">
+                <button onclick="setStar(1)">★</button
+                ><button onclick="setStar(2)">★</button>
+                <button onclick="setStar(3)">★</button
+                ><button onclick="setStar(4)">★</button>
+                <button onclick="setStar(5)">★</button>
               </div>
             </div>
-            <div class="form-group">
+            <div class="fgrp">
               <label>Review Count</label>
-              <input type="text" id="f_reviews" placeholder="1.5k" />
+              <input class="finput" id="f_reviews" placeholder="2.4k" />
             </div>
           </div>
-          <div class="form-group">
+
+          <div class="fgrp">
             <label>Product Image URL *</label>
             <input
-              type="text"
-              id="f_image"
-              placeholder="https://images.unsplash.com/…"
-              oninput="previewImg()"
+              class="finput"
+              id="f_img"
+              placeholder="https://…"
+              oninput="prevImg()"
             />
-            <div class="img-preview" id="imgPreview">
-              <i class="fas fa-image"></i>
-              <span>Paste an image URL above to preview</span>
+            <div class="img-prev" id="imgPrev">
+              <i class="fas fa-image"></i><span>Image preview</span>
             </div>
             <p class="form-hint">
-              Tip: Use any direct image link (Unsplash, Amazon product image,
-              etc.)
+              Use any direct image URL — Unsplash, Amazon product image, etc.
             </p>
           </div>
-          <div class="form-group">
+
+          <div class="fgrp">
             <label>Amazon Affiliate Link *</label>
             <input
-              type="text"
-              id="f_amazonUrl"
+              class="finput"
+              id="f_amazon"
               placeholder="https://www.amazon.com/dp/ASIN?tag=YOURTAG-20"
             />
+            <p class="form-hint">
+              Include your affiliate tag so you earn commission.
+            </p>
           </div>
-          <div class="form-group">
+
+          <div class="fgrp">
             <label
-              >Pinterest Save URL
+              >Pinterest URL
               <span
                 style="
                   font-weight: 400;
                   text-transform: none;
                   letter-spacing: 0;
-                  color: var(--light-text);
+                  color: var(--mute);
                 "
-                >(optional — auto-generated if empty)</span
+                >(optional — auto-built if empty)</span
               ></label
             >
-            <input
-              type="text"
-              id="f_pinterestUrl"
-              placeholder="Auto-generated if left empty"
-            />
+            <input class="finput" id="f_pin" placeholder="Auto-generated" />
           </div>
-          <button class="btn-submit" id="submitBtn" onclick="submitProduct()">
-            <span id="submitBtnText">✦ Add to Shop</span>
+
+          <button
+            class="btn-primary"
+            id="addBtn"
+            onclick="submitProduct()"
+            style="margin-top: 4px"
+          >
+            <span id="addBtnTxt">✦ Save Product</span>
           </button>
         </div>
       </div>
     </div>
 
-    <!-- CONFIRM DELETE -->
-    <div class="confirm-overlay" id="confirmOverlay">
-      <div class="confirm-box">
-        <h4>Remove this product?</h4>
-        <p>
-          This will permanently remove it for <strong>everyone</strong> who
-          visits the shop.
-        </p>
-        <div class="confirm-actions">
-          <button class="btn-cancel-c" onclick="closeConfirm()">Cancel</button>
-          <button class="btn-confirm-del" onclick="confirmDelete()">
-            Yes, Remove
+    <!-- ══════════════ CONFIRM DELETE MODAL ══════════════ -->
+    <div class="modal-bg" id="confirmModal">
+      <div class="modal" style="max-width: 360px">
+        <div class="modal-head">
+          <h3>Remove Product?</h3>
+          <button class="modal-x" onclick="closeModal('confirmModal')">
+            ✕
           </button>
+        </div>
+        <div class="modal-body-p">
+          <p
+            style="
+              color: var(--mute);
+              font-size: 14px;
+              line-height: 1.6;
+              margin-bottom: 24px;
+            "
+          >
+            This will permanently delete it for all visitors.
+          </p>
+          <div style="display: flex; gap: 12px">
+            <button
+              onclick="closeModal('confirmModal')"
+              style="
+                flex: 1;
+                padding: 12px;
+                border-radius: var(--r100);
+                background: var(--warm);
+                border: 1.5px solid var(--border);
+                font-family: 'Outfit', sans-serif;
+                font-weight: 600;
+                font-size: 14px;
+                cursor: pointer;
+              "
+            >
+              Cancel
+            </button>
+            <button
+              onclick="confirmDel()"
+              style="
+                flex: 1;
+                padding: 12px;
+                border-radius: var(--r100);
+                background: var(--red);
+                color: #fff;
+                border: none;
+                font-family: 'Outfit', sans-serif;
+                font-weight: 700;
+                font-size: 14px;
+                cursor: pointer;
+              "
+            >
+              Yes, Delete
+            </button>
+          </div>
         </div>
       </div>
     </div>
 
+    <!-- TOAST -->
     <div class="toast" id="toast"></div>
 
     <script>
-      // ═══════════════════════════════════════════════
-      // CONFIG — stored in localStorage per browser
-      // ═══════════════════════════════════════════════
-      const CFG_KEY = "pinshop_config";
-      let BIN_ID = "";
-      let API_KEY = "";
+      /* ═══════════════════════════════════════════
+   CONFIG & AUTH — hardcoded
+═══════════════════════════════════════════ */
+      const BIN_ID = "69b42893c3097a1dd5215474";
+      const API_KEY =
+        "$2a$10$ur8GeZSwi8QyAxW6vpKFOOCK6rz77CCZSpoJg/4SukR7rciQeqg7m";
+      const ADMIN_PASS = "Velvra@2026";
+      let isAdmin = false;
 
-      function loadConfig() {
-        try {
-          const c = JSON.parse(localStorage.getItem(CFG_KEY));
-          if (c && c.binId && c.apiKey) {
-            BIN_ID = c.binId;
-            API_KEY = c.apiKey;
-            return true;
-          }
-        } catch (e) {}
-        return false;
+      /* ── ADMIN AUTH ── */
+      function openLoginModal() {
+        openModal("loginModal");
+        q("loginPass").value = "";
+        q("loginErr").style.display = "none";
+        setTimeout(() => q("loginPass").focus(), 300);
       }
-      function saveConfig() {
-        BIN_ID = document.getElementById("inputBinId").value.trim();
-        API_KEY = document.getElementById("inputApiKey").value.trim();
-        if (!BIN_ID || !API_KEY) {
-          showToast("Please fill in both fields", "error");
-          return;
+      function doLogin() {
+        if (q("loginPass").value === ADMIN_PASS) {
+          isAdmin = true;
+          closeModal("loginModal");
+          document
+            .querySelectorAll(".admin-only")
+            .forEach((el) => (el.style.display = "flex"));
+          q("btnAdminLogin").style.display = "none";
+          document
+            .querySelectorAll(".btn-del-card")
+            .forEach((el) => (el.style.display = "flex"));
+          toast("Admin mode on", "ok");
+          render();
+        } else {
+          q("loginErr").style.display = "block";
+          q("loginPass").value = "";
         }
-        localStorage.setItem(
-          CFG_KEY,
-          JSON.stringify({ binId: BIN_ID, apiKey: API_KEY })
-        );
-        document.getElementById("setupScreen").style.display = "none";
-        initShop();
       }
-      function resetConfig() {
-        if (
-          !confirm(
-            "This will disconnect this browser from the database. Continue?"
-          )
-        )
-          return;
-        localStorage.removeItem(CFG_KEY);
-        location.reload();
+      function adminLogout() {
+        isAdmin = false;
+        document
+          .querySelectorAll(".admin-only")
+          .forEach((el) => (el.style.display = "none"));
+        q("btnAdminLogin").style.display = "";
+        document
+          .querySelectorAll(".btn-del-card")
+          .forEach((el) => (el.style.display = "none"));
+        toast("Logged out");
+        render();
       }
 
-      // ═══════════════════════════════════════════════
-      // JSONBin API
-      // ═══════════════════════════════════════════════
-      const JSONBIN_BASE = "https://api.jsonbin.io/v3/b";
+      /* ═══════════════════════════════════════════
+   JSONBIN API
+═══════════════════════════════════════════ */
+      const JB = "https://api.jsonbin.io/v3/b";
 
-      async function fetchProducts() {
-        const res = await fetch(`${JSONBIN_BASE}/${BIN_ID}/latest`, {
+      async function fetchProds() {
+        const r = await fetch(`${JB}/${BIN_ID}/latest`, {
           headers: { "X-Master-Key": API_KEY },
         });
-        if (!res.ok) throw new Error(`Fetch failed: ${res.status}`);
-        const data = await res.json();
-        return data.record.products || [];
+        if (!r.ok) throw new Error(r.status);
+        return (await r.json()).record.products || [];
       }
-
-      async function pushProducts(prods) {
-        const res = await fetch(`${JSONBIN_BASE}/${BIN_ID}`, {
+      async function pushProds(arr) {
+        const r = await fetch(`${JB}/${BIN_ID}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
             "X-Master-Key": API_KEY,
           },
-          body: JSON.stringify({ products: prods }),
+          body: JSON.stringify({ products: arr }),
         });
-        if (!res.ok) throw new Error(`Save failed: ${res.status}`);
+        if (!r.ok) throw new Error(r.status);
       }
 
-      // ═══════════════════════════════════════════════
-      // STATE
-      // ═══════════════════════════════════════════════
+      /* ═══════════════════════════════════════════
+   STATE
+═══════════════════════════════════════════ */
       let products = [];
-      let currentCat = "all";
-      let selectedBadge = "none";
-      let selectedRating = 5;
-      let deleteTargetId = null;
-      let editMode = false;
+      let delId = null;
       let editId = null;
+      let badge = "none",
+        stars = 5;
 
-      function uuid() {
-        return (
-          "p_" + Math.random().toString(36).substr(2, 9) + "_" + Date.now()
-        );
-      }
+      const uid = () =>
+        "v_" + Math.random().toString(36).substr(2, 8) + "_" + Date.now();
+      const q = (id) => document.getElementById(id);
 
-      // ═══════════════════════════════════════════════
-      // INIT
-      // ═══════════════════════════════════════════════
+      /* ═══════════════════════════════════════════
+   BOOT
+═══════════════════════════════════════════ */
       async function initShop() {
-        showSection("loadingScreen");
+        q("loadingScreen").style.display = "flex";
         try {
-          products = await fetchProducts();
-          showMainUI();
-          applyFilters();
+          products = await fetchProds();
+          showUI();
+          render();
         } catch (e) {
-          document.getElementById("loadingScreen").style.display = "none";
-          showToast(
-            "Could not connect to database. Check your Bin ID and API Key.",
-            "error"
-          );
-          document.getElementById("setupScreen").style.display = "flex";
+          q("loadingScreen").style.display = "none";
+          toast("Cannot connect to database. Please try refreshing.", "err");
         }
       }
 
-      function showSection(id) {
-        document.getElementById("loadingScreen").style.display =
-          id === "loadingScreen" ? "flex" : "none";
+      function showUI() {
+        q("loadingScreen").style.display = "none";
+        q("mainNav").style.display = "flex";
+        q("heroSection").style.display = "block";
+        q("shopBody").style.display = "block";
       }
 
-      function showMainUI() {
-        document.getElementById("loadingScreen").style.display = "none";
-        ["mainContent", "mainNav", "heroSection", "shopBody"].forEach((id) => {
-          document.getElementById(id).style.display =
-            id === "mainNav" || id === "mainContent"
-              ? ""
-              : id === "heroSection"
-              ? "block"
-              : "block";
-        });
-        document.getElementById("mainNav").style.display = "flex";
-        document.getElementById("mainContent").style.display = "block";
-        document.getElementById("heroSection").style.display = "block";
-        document.getElementById("shopBody").style.display = "block";
+      /* ═══════════════════════════════════════════
+   RENDER
+═══════════════════════════════════════════ */
+      function starsH(n) {
+        return [1, 2, 3, 4, 5].map((i) => (i <= n ? "★" : "☆")).join("");
       }
-
-      // ═══════════════════════════════════════════════
-      // RENDER
-      // ═══════════════════════════════════════════════
-      function starsHtml(r) {
-        let s = "";
-        for (let i = 1; i <= 5; i++) s += i <= r ? "★" : "☆";
-        return s;
-      }
-      function calcSave(p, o) {
+      function savePct(p, o) {
         if (!o) return "";
         const pv = parseFloat(p.replace(/[^0-9.]/g, "")),
           ov = parseFloat(o.replace(/[^0-9.]/g, ""));
         if (!pv || !ov || ov <= pv) return "";
         return `Save ${Math.round((1 - pv / ov) * 100)}%`;
       }
-      function buildPinUrl(p) {
-        if (p.pinterestUrl) return p.pinterestUrl;
+      function pinUrl(p) {
+        if (p.pinUrl) return p.pinUrl;
         return `https://pinterest.com/pin/create/button/?url=${encodeURIComponent(
           p.amazonUrl
-        )}&description=${encodeURIComponent(
-          p.title
-        )}&media=${encodeURIComponent(p.image)}`;
+        )}&description=${encodeURIComponent(p.name)}&media=${encodeURIComponent(
+          p.img
+        )}`;
       }
 
-      function renderCard(p, delay) {
-        const save = calcSave(p.price, p.oldPrice);
-        const badge =
+      function cardHtml(p, delay) {
+        const sv = savePct(p.price, p.oldPrice);
+        const bdg =
           p.badge === "deal"
-            ? `<span class="badge-deal">🔥 Deal</span>`
+            ? `<span class="badge badge-deal">🔥 Deal</span>`
             : p.badge === "new"
-            ? `<span class="badge-new">✦ New</span>`
+            ? `<span class="badge badge-new">✦ New</span>`
             : "";
-        const pin = buildPinUrl(p).replace(/'/g, "%27");
+        const pin = pinUrl(p).replace(/'/g, "%27");
+        const delBtn = `<button class="btn-del-card" onclick="askDel(event,'${
+          p.id
+        }')" style="${
+          isAdmin ? "display:flex" : ""
+        }" title="Delete"><i class="fas fa-trash"></i></button>`;
         return `
-  <div class="pin-card" data-cat="${
-    p.category
-  }" data-title="${p.title.toLowerCase()}" style="animation-delay:${delay}s">
-    <div class="card-img-wrap">
-      <img src="${p.image}" alt="${
-          p.title
-        }" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1525328437458-0c4d4db7cab4?w=400&q=80'"/>
-      <div class="overlay">
-        <a href="${
+  <div class="card" style="animation-delay:${delay}s">
+    <div class="card-img">
+      <img src="${p.img}" alt="${p.name}" loading="lazy"
+           onerror="this.src='https://images.unsplash.com/photo-1525328437458-0c4d4db7cab4?w=400&q=80'"/>
+      <div class="card-overlay">
+        <a class="cta-shop" href="${
           p.amazonUrl
-        }" target="_blank" rel="noopener noreferrer" class="btn-shop">
+        }" target="_blank" rel="noopener noreferrer">
           <i class="fab fa-amazon"></i> Shop on Amazon
         </a>
       </div>
-      ${badge}
-      <button class="save-btn" onclick="pinIt(event,'${pin}')" title="Save to Pinterest"><i class="fab fa-pinterest-p"></i></button>
-      <button class="delete-btn" onclick="askDelete(event,'${
-        p.id
-      }')" title="Remove product"><i class="fas fa-trash"></i></button>
+      ${bdg}
+      <button class="btn-pin-card" onclick="pinIt(event,'${pin}')" title="Save to Pinterest">
+        <i class="fab fa-pinterest-p"></i>
+      </button>
+      ${delBtn}
     </div>
     <div class="card-body">
-      <div class="card-category">${p.category}</div>
-      <div class="card-title">${p.title}</div>
-      <div class="card-price-row">
-        <span class="price-now">${p.price}</span>
+      <div class="card-cat">${p.category || "picks"}</div>
+      <div class="card-name">${p.name}</div>
+      <div class="card-prices">
+        <span class="price">${p.price}</span>
         ${p.oldPrice ? `<span class="price-old">${p.oldPrice}</span>` : ""}
-        ${save ? `<span class="price-save">${save}</span>` : ""}
+        ${sv ? `<span class="price-save">${sv}</span>` : ""}
       </div>
-      <div class="stars">${starsHtml(p.rating)}${
+      <div class="stars">${starsH(p.stars || 5)}${
           p.reviews ? `<span>(${p.reviews})</span>` : ""
         }</div>
-      <div class="card-footer-links">
-        <a href="${
+      <div class="card-links">
+        <a class="lnk lnk-amz" href="${
           p.amazonUrl
-        }" target="_blank" rel="noopener noreferrer" class="link-pill link-amazon"><i class="fab fa-amazon"></i> Amazon</a>
-        <a href="${pin}" target="_blank" rel="noopener noreferrer" class="link-pill link-pin"><i class="fab fa-pinterest-p"></i> Save</a>
+        }" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-amazon"></i> Amazon
+        </a>
+        <a class="lnk lnk-pin" href="${pin}" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-pinterest-p"></i> Save
+        </a>
       </div>
     </div>
   </div>`;
       }
 
-      function applyFilters() {
-        const s = document.getElementById("searchInput").value.toLowerCase();
-        const f = products.filter(
+      function render() {
+        const s = q("searchInput").value.toLowerCase();
+        const filtered = products.filter(
           (p) =>
-            (currentCat === "all" || p.category === currentCat) &&
-            (p.title.toLowerCase().includes(s) || p.category.includes(s))
+            p.name.toLowerCase().includes(s) ||
+            (p.category || "").toLowerCase().includes(s)
         );
-        const grid = document.getElementById("masonryGrid");
-        grid.innerHTML =
-          f.length === 0
-            ? `<div class="empty-state"><i class="fas fa-box-open"></i><h3>No products yet</h3><p>Add your first product!</p><button onclick="openAdmin()"><i class="fas fa-plus"></i> Add Product</button></div>`
-            : f.map((p, i) => renderCard(p, i * 0.04)).join("");
-        document.getElementById("countLabel").textContent = `${f.length} item${
-          f.length !== 1 ? "s" : ""
+        const grid = q("grid");
+        if (filtered.length === 0) {
+          grid.innerHTML = `<div class="empty">
+      <i class="fas fa-box-open"></i>
+      <h3>${
+        isAdmin ? "No products yet — add your first one!" : "No products found"
+      }</h3>
+      <p>${
+        isAdmin
+          ? 'Click "+ Add Product" in the nav to get started.'
+          : "Try a different search."
+      }</p>
+    </div>`;
+        } else {
+          grid.innerHTML = filtered
+            .map((p, i) => cardHtml(p, i * 0.04))
+            .join("");
+        }
+        q("countLabel").textContent = `${filtered.length} product${
+          filtered.length !== 1 ? "s" : ""
         }`;
       }
 
-      function filterCat(cat, el) {
-        currentCat = cat;
-        document
-          .querySelectorAll(".pill")
-          .forEach((p) => p.classList.remove("active"));
-        el.classList.add("active");
-        applyFilters();
-      }
-
-      // ═══════════════════════════════════════════════
-      // ADMIN MODAL
-      // ═══════════════════════════════════════════════
-      function openAdmin(id) {
-        editMode = !!id;
-        editId = id || null;
-        document.getElementById("modalTitle").textContent = editMode
-          ? "✎ Edit Product"
-          : "✦ Add New Product";
-        document.getElementById("submitBtnText").textContent = editMode
-          ? "Save Changes"
-          : "✦ Add to Shop";
-        if (editMode) {
-          const p = products.find((x) => x.id === id);
-          if (!p) return;
-          document.getElementById("f_title").value = p.title;
-          document.getElementById("f_category").value = p.category;
-          document.getElementById("f_price").value = p.price;
-          document.getElementById("f_oldPrice").value = p.oldPrice || "";
-          document.getElementById("f_reviews").value = p.reviews || "";
-          document.getElementById("f_image").value = p.image;
-          document.getElementById("f_amazonUrl").value = p.amazonUrl;
-          document.getElementById("f_pinterestUrl").value =
-            p.pinterestUrl || "";
-          selectedBadge = p.badge || "none";
-          selectedRating = p.rating || 5;
-          previewImg();
-        } else {
-          [
-            "f_title",
-            "f_category",
-            "f_price",
-            "f_oldPrice",
-            "f_reviews",
-            "f_image",
-            "f_amazonUrl",
-            "f_pinterestUrl",
-          ].forEach((i) => (document.getElementById(i).value = ""));
-          selectedBadge = "none";
-          selectedRating = 5;
-          document.getElementById("imgPreview").innerHTML =
-            '<i class="fas fa-image"></i><span>Paste an image URL above to preview</span>';
-        }
-        updateBadgeUI();
-        updateStarUI();
-        document.getElementById("adminModal").classList.add("open");
-        document.body.style.overflow = "hidden";
-      }
-      function closeAdmin() {
-        document.getElementById("adminModal").classList.remove("open");
-        document.body.style.overflow = "";
-      }
-      function closeAdminOutside(e) {
-        if (e.target.id === "adminModal") closeAdmin();
-      }
-      function selectBadge(v) {
-        selectedBadge = v;
-        updateBadgeUI();
-      }
-      function updateBadgeUI() {
-        const o = document.querySelectorAll(".badge-opt");
-        o.forEach((b) => (b.className = "badge-opt"));
-        if (selectedBadge === "none") o[0].classList.add("sel-none");
-        if (selectedBadge === "deal") o[1].classList.add("sel-deal");
-        if (selectedBadge === "new") o[2].classList.add("sel-new");
-      }
-      function setRating(n) {
-        selectedRating = n;
-        updateStarUI();
-      }
-      function updateStarUI() {
-        document
-          .querySelectorAll("#starInput button")
-          .forEach((b, i) => b.classList.toggle("active", i < selectedRating));
-      }
-      function previewImg() {
-        const url = document.getElementById("f_image").value.trim();
-        const p = document.getElementById("imgPreview");
-        p.innerHTML = url
-          ? `<img src="${url}" alt="preview" onerror="this.parentElement.innerHTML='<i class=\\'fas fa-exclamation-triangle\\'></i><span>Could not load</span>'"/>`
-          : `<i class="fas fa-image"></i><span>Paste an image URL above to preview</span>`;
-      }
-
-      async function submitProduct() {
-        const v = (id) => document.getElementById(id).value.trim();
-        const title = v("f_title"),
-          category = v("f_category"),
-          price = v("f_price"),
-          oldPrice = v("f_oldPrice"),
-          reviews = v("f_reviews"),
-          image = v("f_image"),
-          amazonUrl = v("f_amazonUrl"),
-          pinterestUrl = v("f_pinterestUrl");
-        if (!title) {
-          showToast("Please enter a product name", "error");
-          return;
-        }
-        if (!category) {
-          showToast("Please select a category", "error");
-          return;
-        }
-        if (!price) {
-          showToast("Please enter a price", "error");
-          return;
-        }
-        if (!image) {
-          showToast("Please enter an image URL", "error");
-          return;
-        }
-        if (!amazonUrl) {
-          showToast("Please enter your Amazon affiliate link", "error");
-          return;
-        }
-
-        const btn = document.getElementById("submitBtn");
-        btn.disabled = true;
-        document.getElementById("submitBtnText").textContent = "Saving…";
-
-        try {
-          if (editMode && editId) {
-            const idx = products.findIndex((p) => p.id === editId);
-            if (idx > -1)
-              products[idx] = {
-                ...products[idx],
-                title,
-                category,
-                price,
-                oldPrice,
-                reviews,
-                image,
-                amazonUrl,
-                pinterestUrl,
-                badge: selectedBadge === "none" ? "" : selectedBadge,
-                rating: selectedRating,
-              };
-          } else {
-            products.unshift({
-              id: uuid(),
-              title,
-              category,
-              price,
-              oldPrice,
-              reviews,
-              image,
-              amazonUrl,
-              pinterestUrl,
-              badge: selectedBadge === "none" ? "" : selectedBadge,
-              rating: selectedRating,
-            });
-          }
-          await pushProducts(products);
-          applyFilters();
-          closeAdmin();
-          showToast(
-            editMode
-              ? "Product updated!"
-              : "Product added — visible to everyone!",
-            "success"
-          );
-        } catch (e) {
-          showToast("Error saving. Check your API key.", "error");
-        }
-        btn.disabled = false;
-        document.getElementById("submitBtnText").textContent = editMode
-          ? "Save Changes"
-          : "✦ Add to Shop";
-      }
-
-      // ═══════════════════════════════════════════════
-      // DELETE
-      // ═══════════════════════════════════════════════
-      function askDelete(e, id) {
-        e.preventDefault();
-        e.stopPropagation();
-        deleteTargetId = id;
-        document.getElementById("confirmOverlay").classList.add("open");
-      }
-      function closeConfirm() {
-        deleteTargetId = null;
-        document.getElementById("confirmOverlay").classList.remove("open");
-      }
-      async function confirmDelete() {
-        if (!deleteTargetId) return;
-        products = products.filter((p) => p.id !== deleteTargetId);
-        try {
-          await pushProducts(products);
-          applyFilters();
-          showToast("Product removed for everyone", "success");
-        } catch (e) {
-          showToast("Error deleting. Try again.", "error");
-        }
-        closeConfirm();
-      }
-
-      // PINTEREST
       function pinIt(e, url) {
         e.preventDefault();
         e.stopPropagation();
         window.open(decodeURIComponent(url), "_blank");
       }
 
-      // TOAST
-      function showToast(msg, type = "") {
-        const t = document.getElementById("toast");
-        t.textContent = msg;
-        t.className = "toast show" + (type ? " " + type : "");
-        setTimeout(() => t.classList.remove("show"), 3500);
+      /* ═══════════════════════════════════════════
+   ADD / EDIT PRODUCT
+═══════════════════════════════════════════ */
+      function openAddModal(id) {
+        editId = id || null;
+        q("addModalTitle").textContent = editId
+          ? "✎ Edit Product"
+          : "✦ Add Product";
+        q("addBtnTxt").textContent = editId ? "Save Changes" : "✦ Save Product";
+        if (editId) {
+          const p = products.find((x) => x.id === editId);
+          if (!p) return;
+          q("f_name").value = p.name;
+          q("f_cat").value = p.category;
+          q("f_price").value = p.price;
+          q("f_oldprice").value = p.oldPrice || "";
+          q("f_reviews").value = p.reviews || "";
+          q("f_img").value = p.img;
+          q("f_amazon").value = p.amazonUrl;
+          q("f_pin").value = p.pinUrl || "";
+          badge = p.badge || "none";
+          stars = p.stars || 5;
+          prevImg();
+        } else {
+          [
+            "f_name",
+            "f_cat",
+            "f_price",
+            "f_oldprice",
+            "f_reviews",
+            "f_img",
+            "f_amazon",
+            "f_pin",
+          ].forEach((id) => (q(id).value = ""));
+          badge = "none";
+          stars = 5;
+          q("imgPrev").innerHTML =
+            '<i class="fas fa-image"></i><span>Image preview</span>';
+        }
+        updateBadgeUI();
+        updateStarUI();
+        openModal("addModal");
       }
 
-      // ══ BOOT ══
-      if (loadConfig()) {
-        document.getElementById("setupScreen").style.display = "none";
-        initShop();
+      function setBadge(v) {
+        badge = v;
+        updateBadgeUI();
       }
+      function updateBadgeUI() {
+        document
+          .querySelectorAll(".bopt")
+          .forEach((b) => (b.className = "bopt"));
+        const o = document.querySelectorAll(".bopt");
+        if (badge === "none") o[0].classList.add("s-none");
+        if (badge === "deal") o[1].classList.add("s-deal");
+        if (badge === "new") o[2].classList.add("s-new");
+      }
+      function setStar(n) {
+        stars = n;
+        updateStarUI();
+      }
+      function updateStarUI() {
+        document
+          .querySelectorAll("#starRow button")
+          .forEach((b, i) => b.classList.toggle("on", i < stars));
+      }
+      function prevImg() {
+        const url = q("f_img").value.trim();
+        q("imgPrev").innerHTML = url
+          ? `<img src="${url}" onerror="this.parentElement.innerHTML='<i class=\\'fas fa-exclamation-triangle\\'></i><span>Cannot load</span>'"/>`
+          : `<i class="fas fa-image"></i><span>Image preview</span>`;
+      }
+
+      async function submitProduct() {
+        const name = q("f_name").value.trim(),
+          cat = q("f_cat").value,
+          price = q("f_price").value.trim(),
+          oldPrice = q("f_oldprice").value.trim(),
+          reviews = q("f_reviews").value.trim(),
+          img = q("f_img").value.trim(),
+          amazonUrl = q("f_amazon").value.trim(),
+          pinUrl = q("f_pin").value.trim();
+        if (!name) {
+          toast("Enter a product name", "err");
+          return;
+        }
+        if (!cat) {
+          toast("Select a category", "err");
+          return;
+        }
+        if (!price) {
+          toast("Enter a price", "err");
+          return;
+        }
+        if (!img) {
+          toast("Enter an image URL", "err");
+          return;
+        }
+        if (!amazonUrl) {
+          toast("Enter your Amazon affiliate link", "err");
+          return;
+        }
+
+        q("addBtn").disabled = true;
+        q("addBtnTxt").textContent = "Saving…";
+        try {
+          if (editId) {
+            const i = products.findIndex((p) => p.id === editId);
+            if (i > -1)
+              products[i] = {
+                ...products[i],
+                name,
+                category: cat,
+                price,
+                oldPrice,
+                reviews,
+                img,
+                amazonUrl,
+                pinUrl,
+                badge,
+                stars,
+              };
+          } else {
+            products.unshift({
+              id: uid(),
+              name,
+              category: cat,
+              price,
+              oldPrice,
+              reviews,
+              img,
+              amazonUrl,
+              pinUrl,
+              badge,
+              stars,
+            });
+          }
+          await pushProds(products);
+          render();
+          closeModal("addModal");
+          toast(editId ? "Product updated!" : "Product added!", "ok");
+        } catch (e) {
+          toast("Save failed. Check API key.", "err");
+        }
+        q("addBtn").disabled = false;
+        q("addBtnTxt").textContent = editId ? "Save Changes" : "✦ Save Product";
+      }
+
+      /* ═══════════════════════════════════════════
+   DELETE
+═══════════════════════════════════════════ */
+      function askDel(e, id) {
+        e.preventDefault();
+        e.stopPropagation();
+        delId = id;
+        openModal("confirmModal");
+      }
+      async function confirmDel() {
+        if (!delId) return;
+        products = products.filter((p) => p.id !== delId);
+        try {
+          await pushProds(products);
+          render();
+          toast("Product deleted", "ok");
+        } catch (e) {
+          toast("Delete failed", "err");
+        }
+        closeModal("confirmModal");
+        delId = null;
+      }
+
+      /* ═══════════════════════════════════════════
+   MODAL HELPERS
+═══════════════════════════════════════════ */
+      function openModal(id) {
+        q(id).classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+      function closeModal(id) {
+        q(id).classList.remove("open");
+        document.body.style.overflow = "";
+      }
+      function closeBg(id, e) {
+        if (e.target.id === id) closeModal(id);
+      }
+
+      /* TOAST */
+      function toast(msg, type = "") {
+        const t = q("toast");
+        t.textContent = msg;
+        t.className = "toast show" + (type ? " " + type : "");
+        clearTimeout(t._t);
+        t._t = setTimeout(() => t.classList.remove("show"), 3200);
+      }
+
+      /* ═══════════════════════════════════════════
+   BOOT
+═══════════════════════════════════════════ */
+      initShop();
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
