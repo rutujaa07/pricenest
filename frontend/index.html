@@ -484,23 +484,29 @@
       /* ══════════════════════════════════
    FILTER BAR
 ══════════════════════════════════ */
-      .filter-bar {
-        padding: 24px 40px 0;
+      .filters-wrap {
+        padding: 28px 40px 0;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .filter-row {
         display: flex;
         align-items: center;
         gap: 10px;
         flex-wrap: wrap;
       }
       .filter-label {
-        font-size: 11px;
-        font-weight: 600;
-        letter-spacing: 2px;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 2.5px;
         text-transform: uppercase;
         color: var(--mute);
-        margin-right: 4px;
+        margin-right: 2px;
+        min-width: 52px;
       }
       .fpill {
-        padding: 8px 20px;
+        padding: 7px 18px;
         border-radius: var(--r100);
         border: 1.5px solid var(--border);
         background: #fff;
@@ -522,10 +528,29 @@
         color: #fff;
         font-weight: 600;
       }
+      /* price pills get a green tint when active */
+      .fpill.price-pill.active {
+        background: #1a6e45;
+        border-color: #1a6e45;
+        color: #fff;
+      }
+      .fpill.price-pill:hover {
+        border-color: #1a6e45;
+        color: #1a6e45;
+      }
+      .filter-divider {
+        width: 100%;
+        height: 1px;
+        background: var(--border);
+        margin: 2px 0;
+      }
       @media (max-width: 750px) {
-        .filter-bar {
+        .filters-wrap {
           padding: 20px 16px 0;
-          gap: 8px;
+          gap: 10px;
+        }
+        .filter-label {
+          min-width: 40px;
         }
       }
 
@@ -1311,28 +1336,69 @@
 
     <!-- ══════════════ SHOP BODY ══════════════ -->
     <div id="shopBody">
-      <div class="filter-bar" id="filterBar">
-        <span class="filter-label">Filter</span>
-        <button class="fpill active" onclick="filterCat('all',this)">
-          All
-        </button>
-        <button class="fpill" onclick="filterCat('home',this)">🏠 Home</button>
-        <button class="fpill" onclick="filterCat('tech',this)">💻 Tech</button>
-        <button class="fpill" onclick="filterCat('beauty',this)">
-          ✨ Beauty
-        </button>
-        <button class="fpill" onclick="filterCat('kitchen',this)">
-          🍳 Kitchen
-        </button>
-        <button class="fpill" onclick="filterCat('fitness',this)">
-          💪 Fitness
-        </button>
-        <button class="fpill" onclick="filterCat('fashion',this)">
-          👗 Fashion
-        </button>
-        <button class="fpill" onclick="filterCat('other',this)">
-          🌟 Other
-        </button>
+      <div class="filters-wrap" id="filtersWrap">
+        <!-- Row 1: Category -->
+        <div class="filter-row">
+          <span class="filter-label">Category</span>
+          <button class="fpill active" onclick="filterCat('all',this)">
+            All
+          </button>
+          <button class="fpill" onclick="filterCat('home',this)">
+            🏠 Home
+          </button>
+          <button class="fpill" onclick="filterCat('tech',this)">
+            💻 Tech
+          </button>
+          <button class="fpill" onclick="filterCat('beauty',this)">
+            ✨ Beauty
+          </button>
+          <button class="fpill" onclick="filterCat('kitchen',this)">
+            🍳 Kitchen
+          </button>
+          <button class="fpill" onclick="filterCat('fitness',this)">
+            💪 Fitness
+          </button>
+          <button class="fpill" onclick="filterCat('fashion',this)">
+            👗 Fashion
+          </button>
+          <button class="fpill" onclick="filterCat('other',this)">
+            🌟 Other
+          </button>
+        </div>
+        <!-- Row 2: Price -->
+        <div class="filter-row">
+          <span class="filter-label">Price</span>
+          <button
+            class="fpill price-pill active"
+            onclick="filterPrice('all',this)"
+          >
+            Any Price
+          </button>
+          <button class="fpill price-pill" onclick="filterPrice(199,this)">
+            Under ₹199
+          </button>
+          <button class="fpill price-pill" onclick="filterPrice(299,this)">
+            Under ₹399
+          </button>
+          <button class="fpill price-pill" onclick="filterPrice(399,this)">
+            Under ₹599
+          </button>
+          <button class="fpill price-pill" onclick="filterPrice(499,this)">
+            Under ₹799
+          </button>
+          <button class="fpill price-pill" onclick="filterPrice(999,this)">
+            Under ₹999
+          </button>
+          <button class="fpill price-pill" onclick="filterPrice(1499,this)">
+            Under ₹1,499
+          </button>
+          <button class="fpill price-pill" onclick="filterPrice(1999,this)">
+            Under ₹1,999
+          </button>
+          <button class="fpill price-pill" onclick="filterPrice(4999,this)">
+            Under ₹4,999
+          </button>
+        </div>
       </div>
       <div class="section-bar">
         <h2>All Picks</h2>
@@ -1662,6 +1728,7 @@
 ═══════════════════════════════════════════ */
       let products = [];
       let currentCat = "all";
+      let currentPrice = "all";
       let delId = null;
       let editId = null;
       let badge = "none",
@@ -1777,7 +1844,16 @@
       function filterCat(cat, el) {
         currentCat = cat;
         document
-          .querySelectorAll(".fpill")
+          .querySelectorAll(".fpill:not(.price-pill)")
+          .forEach((p) => p.classList.remove("active"));
+        el.classList.add("active");
+        render();
+      }
+
+      function filterPrice(max, el) {
+        currentPrice = max;
+        document
+          .querySelectorAll(".fpill.price-pill")
           .forEach((p) => p.classList.remove("active"));
         el.classList.add("active");
         render();
@@ -1792,7 +1868,12 @@
           const searchOk =
             p.name.toLowerCase().includes(s) ||
             (p.category || "").toLowerCase().includes(s);
-          return catOk && searchOk;
+          let priceOk = true;
+          if (currentPrice !== "all") {
+            const pv = parseFloat((p.price || "").replace(/[^0-9.]/g, ""));
+            priceOk = !isNaN(pv) && pv < currentPrice;
+          }
+          return catOk && searchOk && priceOk;
         });
         const grid = q("grid");
         if (filtered.length === 0) {
